@@ -8,3 +8,5 @@ Run following commands to launch VM:
 - vagrant up
 - sudo vim "192.168.59.103 game.dev" >> /etc/hosts
 
+
+Now page should be reachable via `http://game.dev`
