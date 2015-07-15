@@ -1,2 +1,17 @@
+# PhpStorm etc
+/.idea
+.DS_Store
+
+# Vagrant
+/.vagrant
+
+# Composer
 /vendor/
-/.idea/
+
+# Symfony directories
+/app/bootstrap.php.cache
+/app/config/parameters.yml
+/app/cache/*
+/app/logs/*
+/app/build/*
+/app/data/*
