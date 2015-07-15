@@ -1,4 +1,10 @@
-sudo2
+sudo game
 =====
 
-A Symfony project created on July 15, 2015, 3:03 pm.
+# Launching VM
+
+Run following commands to launch VM:
+- vagrant plugin install vagrant-hostmanager
+- vagrant up
+- sudo vim "192.168.59.103 game.dev" >> /etc/hosts
+
