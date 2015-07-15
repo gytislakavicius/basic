@@ -86,17 +86,15 @@ apache:
         - rewrite
     vhosts:
         sf5whlgzyb1r:
-            servername: nfqakademija.dev
-            serveraliases:
-                - www.nfqakademija.dev
-            docroot: /var/www/nfqakademija/web
+            servername: game.dev
+            docroot: /var/www/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
             directories:
                 s2a1xn5vtg26:
                     provider: directory
-                    path: /var/www/nfqakademija/web
+                    path: /var/www/web
                     options:
                         - Indexes
                         - FollowSymlinks
