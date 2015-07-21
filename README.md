@@ -1,4 +1,4 @@
-sudo game
+Basic game
 =====
 
 # Launching VM
