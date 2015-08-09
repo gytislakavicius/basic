@@ -15,3 +15,12 @@
 /app/logs/*
 /app/build/*
 /app/data/*
+
+# Node.JS
+/node_modules/
+/typings/
+
+# Generated assets
+/web/build-script/
+/web/css/
+/web/js/
