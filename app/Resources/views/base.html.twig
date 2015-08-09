@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="lt-LT" ng-app="basic">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="robots" content="noindex,nofollow"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>{% block title %}The Basic Game{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/require.js') }}"></script>
+            <script>
+                require.config({
+                    baseUrl: '/js',
+                    urlArgs: 'v=',
+                    waitSec: 0
+                });
+                require(['basic']);
+            </script>
+        {% endblock %}
     </body>
 </html>

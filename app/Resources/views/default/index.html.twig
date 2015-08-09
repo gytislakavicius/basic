@@ -1,5 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Homepage.
+    <section class="container content">
+        <article class="row">
+            <h1 class="col-12 strong uppercase">Basic</h1>
+            <section>
+                {% verbatim %}
+                <h2 class="text-center" ng-controller="TimerCtrl as timer" ng-bind="timer.x">
+                </h2>
+                {% endverbatim %}
+                <h3 class="text-center">Klausimas:</h3>
+                {#<p class="col-12 text-justify" ng-controller="QuestionCtrl" ng-bind="question"></p>#}
+            </section>
+        </article>
+    </section>
+    <footer class="container footer">
+        <nav class="clear text-center">
+            <button class="button disabled left">◀</button>
+            <span>6/15</span>
+            <button class="button right">▶</button>
+        </nav>
+    </footer>
 {% endblock %}
