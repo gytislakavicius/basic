@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="lt-LT" ng-app="basic">
+<html lang="lt-LT" ng-app="{{ appName }}">
     <head>
         <meta charset="UTF-8" />
         <meta name="robots" content="noindex,nofollow"/>
@@ -20,7 +20,7 @@
                     urlArgs: 'v=',
                     waitSec: 0
                 });
-                require(['basic']);
+                require(['{{ appName }}']);
             </script>
         {% endblock %}
     </body>

@@ -6,6 +6,7 @@
 /.vagrant
 
 # Composer
+/bin/
 /vendor/
 
 # Symfony directories
