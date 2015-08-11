@@ -19,11 +19,30 @@ module.exports = function(grunt) {
             }
         },
         requirejs: {
-            dev: {
+            basic: {
                 options: {
                     baseUrl: 'web/build-script',
                     out: 'web/js/basic.js',
                     name: 'basic',
+                    optimize: '<%= grunt.config.get("requireJsOptimizer") %>',
+                    paths: {
+                        'angular': path.resolve() + '/node_modules/angular/angular.min'
+                    },
+                    shim: {
+                        'angular': {
+                            exports: 'angular'
+                        }
+                    },
+                    skipSemiColonInsertion: true,
+                    wrapShim: true,
+                    useStrict: true
+                }
+            },
+            basicRegister: {
+                options: {
+                    baseUrl: 'web/build-script',
+                    out: 'web/js/basicRegister.js',
+                    name: 'basicRegister',
                     optimize: '<%= grunt.config.get("requireJsOptimizer") %>',
                     paths: {
                         'angular': path.resolve() + '/node_modules/angular/angular.min'

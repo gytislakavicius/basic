@@ -1,9 +1,11 @@
 import * as angular from 'angular';
+import RegisterCtrl from './Controller';
 
 class RegisterModule {
     constructor() {
         angular
-            .module('basic.register');
+            .module('basic.register', [])
+            .controller('RegisterCtrl', RegisterCtrl);
     }
 }
 
