@@ -151,3 +151,9 @@ each( $server_values['packages'] ) |$package| {
     }
   }
 }
+
+file { '/usr/local/bin/debug':
+  ensure => present,
+  mode => 755,
+  content => "#!/bin/sh\nenv PHP_IDE_CONFIG=\"serverName=basic\" XDEBUG_CONFIG=\"idekey=PHPSTORM\" SYMFONY_DEBUG=\"1\" $@"
+}
