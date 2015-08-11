@@ -18,9 +18,98 @@ class User extends BaseUser
      */
     protected $id;
 
-    public function __construct()
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $intranetId;
+
+    /**
+     * @ORM\Column(type="string", length="150")
+     */
+    protected $fullName;
+
+    /**
+     * @ORM\Column(type="string", length="15")
+     */
+    protected $uniqueUsername;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
-        parent::__construct();
-        // your own logic
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     *
+     * @return User
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIntranetId()
+    {
+        return $this->intranetId;
+    }
+
+    /**
+     * @param mixed $intranetId
+     *
+     * @return User
+     */
+    public function setIntranetId($intranetId)
+    {
+        $this->intranetId = $intranetId;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param mixed $fullName
+     *
+     * @return User
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUniqueUsername()
+    {
+        return $this->uniqueUsername;
+    }
+
+    /**
+     * @param mixed $uniqueUsername
+     *
+     * @return User
+     */
+    public function setUniqueUsername($uniqueUsername)
+    {
+        $this->uniqueUsername = $uniqueUsername;
+
+        return $this;
     }
 }
