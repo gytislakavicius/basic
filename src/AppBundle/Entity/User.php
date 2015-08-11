@@ -24,12 +24,12 @@ class User extends BaseUser
     protected $intranetId;
 
     /**
-     * @ORM\Column(type="string", length="150")
+     * @ORM\Column(type="string", length=150)
      */
     protected $fullName;
 
     /**
-     * @ORM\Column(type="string", length="15")
+     * @ORM\Column(type="string", length=15)
      */
     protected $uniqueUsername;
 
