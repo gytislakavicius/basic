@@ -1,0 +1,5 @@
+services:
+    basic.encryptor:
+        class: AppBundle\Encryptor\AES256Encryptor
+        arguments:
+          - %secret%
