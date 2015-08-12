@@ -255,7 +255,7 @@ redis:
     settings:
         conf_port: '6379'
 mailcatcher:
-    install: '0'
+    install: '1'
     settings:
         smtp_ip: 0.0.0.0
         smtp_port: 1025
