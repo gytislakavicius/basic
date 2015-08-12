@@ -16,7 +16,7 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig');
     }
     /**
-     * @Route("/register", name="register")
+     * @Route("/sign-up", name="register")
      */
     public function registerAction()
     {
