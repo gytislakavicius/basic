@@ -29,8 +29,7 @@ class Generator
             return false;
         }
         $segmentLimit = ceil($dataCount / $this->numberOfPersons);
-        $outputArray = array_chunk($users, $segmentLimit);
 
-        return $outputArray;
+        return array_chunk($users, $segmentLimit);
     }
 }
