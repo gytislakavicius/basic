@@ -1,5 +1,26 @@
+parameters:
+    basic.teams.names:
+        - Ninjas
+        - Power rangers
+        - Avengers
+        - The detectives
+        - Brainstorms
+
+    basic.teams.size: 5
+
 services:
     basic.encryptor:
         class: AppBundle\Encryptor\AES256Encryptor
         arguments:
-          - %secret%
+            - %secret%
+
+    basic.teams.name_generator:
+        class: AppBundle\Teams\TeamNameGenerator
+        calls:
+            - [setNames, [%basic.teams.names%]]
+
+    basic.teams.generator:
+        class: AppBundle\Teams\Generator
+        calls:
+            - [setTeamNameGenerator, [@basic.teams.name_generator]]
+            - [setTeamSize, [%basic.teams.size%]]

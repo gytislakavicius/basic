@@ -3,31 +3,28 @@
 namespace AppBundle\Teams;
 
 use AppBundle\Entity\Team;
-use Symfony\Component\Yaml\Parser;
 
 class TeamNameGenerator
 {
+    /** @var array */
     private $names;
 
-    private function getNames()
+    /**
+     * @param array $names
+     */
+    public function setNames($names)
     {
-        if (!isset($this->names)) {
-            $yaml = new Parser();
-            $teamNames = $yaml->parse(file_get_contents('../Resources/teamNames.yml'));
-            $this->names = $teamNames;
-        }
-
-        return $this->names;
+        $this->names = $names;
     }
 
     public function addTeamName(Team $team)
     {
-        $randomName = array_rand($this->getNames(), 1);
+        $randomName = array_rand($this->names, 1);
         $team->setName($randomName);
 
         //remove the used name
-        if (($key = array_search('$randomName', $this->getNames())) !== false) {
-            unset($this->getNames()[$key]);
+        if (($key = array_search($randomName, $this->names)) !== false) {
+            unset($this->names[$key]);
         }
     }
 }
