@@ -2,19 +2,30 @@
 
 namespace AppBundle\Teams;
 
+use Doctrine\ORM\EntityManager;
+
 class Generator
 {
-    /**
-     * @var int
-     */
-    private $numberOfPersons = 1;
+    /** @var int */
+    private $teamSize = 1;
+
+    /** @var TeamNameGenerator */
+    private $teamNameGenerator;
 
     /**
-     * @param int $numberOfPersons
+     * @param int $teamSize
      */
-    public function setNumberOfPersons($numberOfPersons)
+    public function setTeamSize($teamSize)
     {
-        $this->numberOfPersons = $numberOfPersons;
+        $this->teamSize = $teamSize;
+    }
+
+    /**
+     * @param TeamNameGenerator $teamNameGenerator
+     */
+    public function setTeamNameGenerator($teamNameGenerator)
+    {
+        $this->teamNameGenerator = $teamNameGenerator;
     }
 
     /**
@@ -23,12 +34,27 @@ class Generator
      */
     public function generate($users)
     {
-        // TODO: User randomisation
+        $chunkedUsers = $this->getChunkedUsers($users);
+
+        foreach ($chunkedUsers as $teamUsers) {
+            // TODO: Create team and add it to users
+        }
+
+        return $chunkedUsers;
+    }
+
+    /**
+     * @param array $users
+     * @return array|bool
+     */
+    private function getChunkedUsers($users)
+    {
+        array_rand($users);
         $dataCount = count($users);
         if ($dataCount == 0) {
             return false;
         }
-        $segmentLimit = ceil($dataCount / $this->numberOfPersons);
+        $segmentLimit = ceil($dataCount / $this->teamSize);
 
         return array_chunk($users, $segmentLimit);
     }
