@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Answer;
 use AppBundle\Entity\Question;
+use AppBundle\Form\AnswerType;
 use AppBundle\Form\QuestionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -75,5 +77,36 @@ class DefaultController extends Controller
     public function registerAction()
     {
         return $this->render('default/register.html.twig');
+    }
+
+    /**
+     * @Route("admin/answer", name="answer")
+     */
+    public function answerAction(Request $request)
+    {
+        $answerForm = $this->createForm(
+            new AnswerType(),
+            new Answer()
+        );
+
+        $answerForm->handleRequest($request);
+
+        if ($answerForm->isValid()) {
+            $answer = $answerForm->getData();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($answer);
+            $em->flush();
+
+            return $this->redirectToRoute('task_success');
+        }
+
+        return $this->render(
+            'default/newAnswer.html.twig',
+            [
+                'answer_form' => $answerForm->createView()
+            ]
+        );
     }
 }

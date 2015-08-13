@@ -22,11 +22,10 @@ class Answer
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="questionID", type="integer")
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumn(name="question", referencedColumnName="id")
      */
-    private $questionID;
+    private $question;
 
     /**
      * @var string
@@ -38,15 +37,12 @@ class Answer
     /**
      * @var boolean
      *
-     * @ORM\Column(name="icorrect", type="boolean")
+     * @ORM\Column(name="incorrect", type="boolean")
      */
-    private $icorrect;
-
+    private $incorrect;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -54,45 +50,31 @@ class Answer
     }
 
     /**
-     * Set questionID
-     *
-     * @param integer $questionID
-     * @return Answer
+     * @param int $id
      */
-    public function setQuestionID($questionID)
+    public function setId($id)
     {
-        $this->questionID = $questionID;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get questionID
-     *
-     * @return integer 
+     * @return mixed
      */
-    public function getQuestionID()
+    public function getQuestion()
     {
-        return $this->questionID;
+        return $this->question;
     }
 
     /**
-     * Set text
-     *
-     * @param string $text
-     * @return Answer
+     * @param mixed $question
      */
-    public function setText($text)
+    public function setQuestion($question)
     {
-        $this->text = $text;
-
-        return $this;
+        $this->question = $question;
     }
 
     /**
-     * Get text
-     *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -100,25 +82,28 @@ class Answer
     }
 
     /**
-     * Set icorrect
-     *
-     * @param boolean $icorrect
-     * @return Answer
+     * @param string $text
      */
-    public function setIcorrect($icorrect)
+    public function setText($text)
     {
-        $this->icorrect = $icorrect;
-
-        return $this;
+        $this->text = $text;
     }
 
     /**
-     * Get icorrect
-     *
-     * @return boolean 
+     * @return boolean
      */
-    public function getIcorrect()
+    public function isIncorrect()
     {
-        return $this->icorrect;
+        return $this->incorrect;
     }
+
+    /**
+     * @param boolean $incorrect
+     */
+    public function setIncorrect($incorrect)
+    {
+        $this->incorrect = $incorrect;
+    }
+
+
 }

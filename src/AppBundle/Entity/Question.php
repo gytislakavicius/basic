@@ -121,4 +121,9 @@ class Question
     {
         return $this->difficulty;
     }
+
+    public function __toString()
+    {
+        return $this->text;
+    }
 }
