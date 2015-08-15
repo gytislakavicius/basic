@@ -6,5 +6,7 @@ app/console doctrine:schema:drop --force
 app/console doctrine:schema:create
 app/console basic:users_update "http://pastebin.com/raw.php?i=pjdzTwDZ" --decrypt
 
+php app/console assets:install --symlink
+
 npm install
 grunt

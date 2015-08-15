@@ -20,3 +20,8 @@ fos_user_change_password:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
