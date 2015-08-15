@@ -202,7 +202,10 @@ ruby:
             version: ''
 nodejs:
     install: '1'
-    npm_packages: {  }
+    npm_packages:
+        - grunt
+        - grunt-cli
+        - bower
 python:
     install: '1'
     packages: {  }
