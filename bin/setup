@@ -1,0 +1,10 @@
+#!/bin/bash
+
+composer install --no-interaction
+
+app/console doctrine:schema:drop --force
+app/console doctrine:schema:create
+app/console basic:users_update
+
+npm install
+grunt
