@@ -89,3 +89,10 @@ fos_user:
     from_email:
         address: game@nfq.lt
         sender_name: NFQ Game
+
+easy_admin:
+    entities:
+        - AppBundle\Entity\Answer
+        - AppBundle\Entity\Question
+        - AppBundle\Entity\Team
+        - AppBundle\Entity\User
