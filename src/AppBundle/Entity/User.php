@@ -29,11 +29,6 @@ class User extends BaseUser
     protected $fullName;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
-     */
-    protected $uniqueUsername;
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -89,26 +84,6 @@ class User extends BaseUser
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUniqueUsername()
-    {
-        return $this->uniqueUsername;
-    }
-
-    /**
-     * @param mixed $uniqueUsername
-     *
-     * @return User
-     */
-    public function setUniqueUsername($uniqueUsername)
-    {
-        $this->uniqueUsername = $uniqueUsername;
 
         return $this;
     }
