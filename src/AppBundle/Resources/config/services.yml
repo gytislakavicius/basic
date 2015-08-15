@@ -14,6 +14,11 @@ services:
         arguments:
             - %secret%
 
+    basic.users:
+        class: AppBundle\Service\Users
+        arguments:
+          - @fos_user.user_manager.default
+
     basic.teams.name_generator:
         class: AppBundle\Teams\TeamNameGenerator
         calls:
