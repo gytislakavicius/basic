@@ -1,0 +1,12 @@
+{% block subject %}
+    {% autoescape false %}
+        Labas, {{ user.username }}!
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}{% endblock %}
+{% block body_html %}
+    Labas, {{ user.username }}!<br><br>
+    Užsiregistravai į žaidimą :O<br><br>
+    Patvirtinimo nuoroda: {{ confirmationUrl }}<br><br>
+    Nuoširdžiai, NFQ Basic game komanda.
+{% endblock %}

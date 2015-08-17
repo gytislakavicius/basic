@@ -85,7 +85,9 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     registration:
-        confirmation: { enabled: true }
+        confirmation:
+            enabled: true
+            template: AppBundle:Registration:email.txt.twig
     from_email:
         address: game@nfq.lt
         sender_name: NFQ Game
