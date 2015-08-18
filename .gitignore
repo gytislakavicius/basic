@@ -6,7 +6,9 @@
 /.vagrant
 
 # Composer
+/bin/
 /vendor/
+!/bin/setup
 
 # Symfony directories
 /app/bootstrap.php.cache

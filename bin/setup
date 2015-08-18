@@ -9,4 +9,4 @@ app/console basic:users_update "http://pastebin.com/raw.php?i=pjdzTwDZ" --decryp
 php app/console assets:install --symlink
 
 npm install
-grunt
+node_modules/.bin/grunt
