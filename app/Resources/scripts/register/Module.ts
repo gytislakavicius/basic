@@ -5,7 +5,7 @@ class RegisterModule {
     constructor() {
         angular
             .module('basic.register', [])
-            .controller('RegisterCtrl', RegisterCtrl);
+            .controller('RegisterCtrl', ['$http', RegisterCtrl]);
     }
 }
 
