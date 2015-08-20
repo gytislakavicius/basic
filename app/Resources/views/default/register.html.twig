@@ -7,14 +7,9 @@
 {% block body %}
     <section class="tablet-container content" ng-controller="RegisterCtrl as register" ng-submit="register.submit($event)" method="POST">
         <h1>Registracija į žaidimą</h1>
-        <form action="{{ url('register') }}" class="form">
             <legend>Norėdami užsiregistruoti žaidime, įrašykite savo NFQ vartojo vardą (vpavarde), pakeičiant lietuviškus simbolius į lotyniškus ir spauskyte "Dalyvausiu".</legend>
-            <div class="clear field-group row">
-                <label class="col-3" for="username">VPavardė: </label>
-                <input autocomplete="off" autofocus class="col-9 input" id="username" name="username" ng-model="register.username" placeholder="vpavarde" type="text" value="">
-            </div>
-
-            <button class="button button-primary">Dalyvausiu</button>
-        </form>
+            {{ form_start(register_form) }}
+            {{ form_widget(register_form) }}
+            {{ form_end(register_form) }}
     </section>
 {% endblock %}

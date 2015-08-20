@@ -4,7 +4,8 @@ namespace AppBundle\Service;
 
 use FOS\UserBundle\Doctrine\UserManager;
 use FOS\UserBundle\Mailer\Mailer;
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class Users
@@ -58,17 +59,20 @@ class Users
     }
 
     /**
-     * Sets confirmation tokens and sends activation email for users for whom it was not yet sent.
+     * Sets confirmation token and sends activation email for user if found
      */
-    public function sendActivationEmails()
+    public function sendActivationEmail($username)
     {
-        /** @var UserInterface $user */
-        foreach($this->userManager->findUsers() as $user) {
-            if (!$user->isEnabled()) {
-                $user->setConfirmationToken(sha1(uniqid(mt_rand(), true)));
-                $this->userManager->updateUser($user);
-                $this->mailer->sendConfirmationEmailMessage($user);
-            }
+        $user = $this->userManager->findUserByUsername($username);
+
+        if (empty($user)) {
+            throw new NotFoundHttpException(sprintf('The user with username "%s" does not exist', $username));
+        } elseif ($user->isEnabled()) {
+            throw new AlreadySubmittedException(sprintf('The user with username "%s" is already activated', $username));
         }
+
+        $user->setConfirmationToken(sha1(uniqid(mt_rand(), true)));
+        $this->userManager->updateUser($user);
+        $this->mailer->sendConfirmationEmailMessage($user);
     }
 }

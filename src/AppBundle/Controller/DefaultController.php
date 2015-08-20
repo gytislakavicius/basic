@@ -59,7 +59,6 @@ class DefaultController extends Controller
         return $this->render(
             'default/success.html.twig'
         );
-
     }
 
     /**
@@ -70,13 +69,6 @@ class DefaultController extends Controller
         return $this->render(
             'default/admin.index.html.twig'
         );
-    }
-    /**
-     * @Route("/sign-up", name="register")
-     */
-    public function registerAction()
-    {
-        return $this->render('default/register.html.twig');
     }
 
     /**
