@@ -22,7 +22,14 @@ class Question extends Admin
                 ->add('difficulty', 'number', array('label' => 'Dificulty'))
             ->end()
             ->with('Answers')
-                ->add('answers', 'entity', ['class' => 'AppBundle\Entity\Answer'])
+                ->add('answers', 'sonata_type_model', [
+                    'by_reference' => false,
+                    'required' => false,
+                    'expanded' => true,
+                    'multiple' => true,
+                    'label' => 'Choose  answers',
+                    'class' => 'AppBundle\Entity\Answer'
+                ])
             ->end()
         ;
     }

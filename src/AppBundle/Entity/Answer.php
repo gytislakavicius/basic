@@ -105,5 +105,11 @@ class Answer
         $this->correct = $correct;
     }
 
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getText();
+    }
 }
