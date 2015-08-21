@@ -1,0 +1,12 @@
+services:
+
+    sonata.admin.post:
+        class: AppBundle\Admin\User
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "User" }
+        arguments:
+            - ~
+            - AppBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle]]
