@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 
@@ -42,7 +43,21 @@ class Api
      */
     public function getQuestions()
     {
-        return [];
+        $result = [];
+
+        /** @var Question[] $questions */
+        $questions = $this->em->getRepository('AppBundle:Question')->findAll();
+
+        foreach ($questions as $question) {
+            $result[] = [
+                'id'      => $question->getId(),
+                'heading' => $question->getText(),
+                'caption' => $question->getDescription(),
+                'type'    => $question->getType(),
+            ];
+        }
+
+        return $result;
     }
 
     /**
@@ -57,8 +72,8 @@ class Api
 
         foreach ($users as $user) {
             $result[] = [
-                'id' => $user->getId(),
-                'name' => $user->getFullName(),
+                'id'    => $user->getId(),
+                'name'  => $user->getFullName(),
                 'image' => $user->getPhotoUrl(),
             ];
         }
@@ -73,6 +88,8 @@ class Api
      */
     protected function getSetting($name)
     {
-        return $this->em->getRepository('AppBundle:Settings')->findOneBy(['name' => $name])->getValue();
+        $setting = $this->em->getRepository('AppBundle:Settings')->findOneBy(['name' => $name]);
+
+        return $setting ? $setting->getValue() : null;
     }
 }
