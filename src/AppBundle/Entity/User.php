@@ -29,6 +29,11 @@ class User extends BaseUser
     protected $fullName;
 
     /**
+     * @ORM\Column(type="string", length=300)
+     */
+    protected $photoUrl;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -86,5 +91,21 @@ class User extends BaseUser
         $this->fullName = $fullName;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhotoUrl()
+    {
+        return $this->photoUrl;
+    }
+
+    /**
+     * @param mixed $photoUrl
+     */
+    public function setPhotoUrl($photoUrl)
+    {
+        $this->photoUrl = $photoUrl;
     }
 }

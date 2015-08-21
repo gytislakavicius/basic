@@ -19,6 +19,8 @@ services:
         arguments:
             - @fos_user.user_manager.default
             - @fos_user.mailer.default
+            - %kernel.root_dir%
+            - %url%
 
     basic.teams.name_generator:
         class: AppBundle\Teams\TeamNameGenerator
@@ -34,7 +36,7 @@ services:
     sonata.admin.post:
         class: AppBundle\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "User" }
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "User" }
         arguments:
             - ~
             - AppBundle\Entity\User
