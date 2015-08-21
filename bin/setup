@@ -7,6 +7,6 @@ app/console doctrine:schema:create
 app/console basic:users_update "http://pastebin.com/raw.php?i=pjdzTwDZ" --decrypt
 
 php app/console assets:install --symlink
-
+ln -s ../../app/Resources/images/ web/public/images
 npm install
 node_modules/.bin/grunt
