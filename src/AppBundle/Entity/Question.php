@@ -181,7 +181,7 @@ class Question
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getActiveFrom()
     {
@@ -189,7 +189,7 @@ class Question
     }
 
     /**
-     * @param mixed $activeFrom
+     * @param \DateTime $activeFrom
      */
     public function setActiveFrom($activeFrom)
     {
@@ -197,7 +197,7 @@ class Question
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getActiveTo()
     {
@@ -205,17 +205,34 @@ class Question
     }
 
     /**
-     * @param mixed $activeTo
+     * @param \DateTime $activeTo
      */
     public function setActiveTo($activeTo)
     {
         $this->activeTo = $activeTo;
     }
 
+    /**
+     * @return bool
+     */
     public function isActive()
     {
         $now = new \DateTime();
 
         return $now >= $this->getactiveFrom() && $now <= $this->getActiveTo();
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getTimeLeft()
+    {
+        if ($this->isActive()) {
+            $now = new \DateTime();
+
+            return $this->getActiveTo()->diff($now)->format('%Y-%m-%d %H:%i:%s');
+        }
+
+        return -1;
     }
 }

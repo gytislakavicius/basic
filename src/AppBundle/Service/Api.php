@@ -50,10 +50,14 @@ class Api
 
         foreach ($questions as $question) {
             $result[] = [
-                'id'      => $question->getId(),
-                'heading' => $question->getText(),
-                'caption' => $question->getDescription(),
-                'type'    => $question->getType(),
+                'id'         => $question->getId(),
+                'heading'    => $question->getText(),
+                'caption'    => $question->getDescription(),
+                'type'       => $question->getType(),
+                'isActive'   => $question->isActive(),
+                'activeFrom' => $question->getActiveFrom()->format('Y-m-d H:i:s'),
+                'activeTo'   => $question->getActiveTo()->format('Y-m-d H:i:s'),
+                'timeLeft'   => $question->getTimeLeft(),
             ];
         }
 
