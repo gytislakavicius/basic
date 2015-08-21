@@ -42,6 +42,13 @@ class ApiController extends Controller
      */
     public function personAction()
     {
-        throw new \Exception('Feature not implemented yet.');
+        /** @var Api $apiService */
+        $apiService = $this->get('basic.api');
+
+        return new JsonResponse(
+            [
+                'persons' => $apiService->getPersons(),
+            ]
+        );
     }
 }
