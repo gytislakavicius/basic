@@ -16,8 +16,9 @@ class User extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('username', 'text', array('label' => 'User'))
-            ->add('user', 'entity', array('class' => 'AppBundle\Entity\User'))
+            ->add('username', 'text', array('label' => 'Username'))
+            ->add('fullName', 'text', array('label' => 'Full name'))
+            ->add('photoUrl', 'text', array('label' => 'Photo URL'))
         ;
     }
 
