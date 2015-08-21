@@ -19,6 +19,8 @@ class Question extends Admin
             ->with('Question')
                 ->add('text', 'text', array('label' => 'Question heading'))
                 ->add('description', 'text', array('label' => 'Question description'))
+                ->add('activeFrom', 'sonata_type_datetime_picker', ['label' => 'Active from'])
+                ->add('activeTo', 'sonata_type_datetime_picker', ['label' => 'Active to'])
                 ->add('type', 'text', array('label' => 'Type'))
                 ->add('difficulty', 'number', array('label' => 'Difficulty'))
             ->end()

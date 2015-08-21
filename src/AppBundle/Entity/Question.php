@@ -55,6 +55,16 @@ class Question
     private $answers;
 
     /**
+     * @ORM\Column(name="activeFrom", type="datetime")
+     */
+    private $activeFrom;
+
+    /**
+     * @ORM\Column(name="activeTo", type="datetime")
+     */
+    private $activeTo;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -168,5 +178,44 @@ class Question
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActiveFrom()
+    {
+        return $this->activeFrom;
+    }
+
+    /**
+     * @param mixed $activeFrom
+     */
+    public function setActiveFrom($activeFrom)
+    {
+        $this->activeFrom = $activeFrom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActiveTo()
+    {
+        return $this->activeTo;
+    }
+
+    /**
+     * @param mixed $activeTo
+     */
+    public function setActiveTo($activeTo)
+    {
+        $this->activeTo = $activeTo;
+    }
+
+    public function isActive()
+    {
+        $now = new \DateTime();
+
+        return $now >= $this->getactiveFrom() && $now <= $this->getActiveTo();
     }
 }
