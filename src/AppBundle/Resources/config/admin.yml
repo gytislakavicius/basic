@@ -10,3 +10,14 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppBundle]]
+
+    sonata.admin.question:
+        class: AppBundle\Admin\Question
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Questions", label: "Question" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Question
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle]]
