@@ -38,6 +38,13 @@ class Question
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="string", length=2000)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="difficulty", type="string", length=255)
      */
     private $difficulty;
@@ -145,5 +152,21 @@ class Question
     public function setAnswers($answers)
     {
         $this->answers = $answers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 }

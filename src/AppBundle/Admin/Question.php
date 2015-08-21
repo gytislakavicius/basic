@@ -17,9 +17,10 @@ class Question extends Admin
     {
         $formMapper
             ->with('Question')
-                ->add('text', 'text', array('label' => 'Question'))
+                ->add('text', 'text', array('label' => 'Question heading'))
+                ->add('description', 'text', array('label' => 'Question description'))
                 ->add('type', 'text', array('label' => 'Type'))
-                ->add('difficulty', 'number', array('label' => 'Dificulty'))
+                ->add('difficulty', 'number', array('label' => 'Difficulty'))
             ->end()
             ->with('Answers')
                 ->add('answers', 'sonata_type_model', [
