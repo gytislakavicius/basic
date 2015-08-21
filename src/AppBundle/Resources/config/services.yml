@@ -31,6 +31,17 @@ services:
             - [setTeamNameGenerator, [@basic.teams.name_generator]]
             - [setTeamSize, [%basic.teams.size%]]
 
+    sonata.admin.post:
+        class: AppBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "User" }
+        arguments:
+            - ~
+            - AppBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle]]
+    
     fos_user.change_password.form.type:
         class: AppBundle\Form\ChangePasswordFormType
         tags:
