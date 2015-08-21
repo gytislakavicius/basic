@@ -16,9 +16,12 @@ class User extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('username', 'text', array('label' => 'Username'))
-            ->add('fullName', 'text', array('label' => 'Full name'))
-            ->add('photoUrl', 'text', array('label' => 'Photo URL'))
+            ->add('enabled', 'checkbox', ['label' => 'Enabled', 'required' => false])
+            ->add('username', 'text', ['label' => 'Username'])
+            ->add('fullName', 'text', ['label' => 'Full name'])
+            ->add('photoUrl', 'text', ['label' => 'Photo URL'])
+            ->add('email', 'text', ['label' => 'Email'])
+            ->add('plainPassword', 'password', ['label' => 'Password', 'required' => false])
         ;
     }
 
@@ -26,6 +29,7 @@ class User extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('enabled', null, ['editable' => true])
             ->add('photoUrl', null, ['template' => 'AppBundle:Admin:user_image.html.twig'])
             ->addIdentifier('username')
             ->add('fullName')
