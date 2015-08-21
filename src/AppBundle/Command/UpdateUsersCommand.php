@@ -38,7 +38,7 @@ class UpdateUsersCommand extends ContainerAwareCommand
 
         $fileContent = file_get_contents($input->getArgument('usersFile'));
 
-        if ($input->hasOption('decrypt')) {
+        if ($input->hasOption('decrypt') && $input->getOption('decrypt')) {
             $fileContent = $this->getContainer()->get('basic.encryptor')->decrypt($fileContent);
         }
 
