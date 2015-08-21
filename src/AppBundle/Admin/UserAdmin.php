@@ -25,6 +25,7 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('photoUrl', null, ['template' => 'AppBundle:Admin:user_image.html.twig'])
             ->addIdentifier('username')
             ->add('fullName')
         ;
