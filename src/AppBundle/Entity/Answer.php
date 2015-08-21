@@ -37,9 +37,9 @@ class Answer
     /**
      * @var boolean
      *
-     * @ORM\Column(name="incorrect", type="boolean")
+     * @ORM\Column(name="correct", type="boolean")
      */
-    private $incorrect;
+    private $correct;
 
     /**
      * @return int
@@ -92,17 +92,17 @@ class Answer
     /**
      * @return boolean
      */
-    public function isIncorrect()
+    public function isCorrect()
     {
-        return $this->incorrect;
+        return $this->correct;
     }
 
     /**
-     * @param boolean $incorrect
+     * @param boolean $correct
      */
-    public function setIncorrect($incorrect)
+    public function setCorrect($correct)
     {
-        $this->incorrect = $incorrect;
+        $this->correct = $correct;
     }
 
 
