@@ -42,6 +42,10 @@ class Question
      */
     private $difficulty;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
+     */
+    private $answers;
 
     /**
      * Get id
@@ -125,5 +129,21 @@ class Question
     public function __toString()
     {
         return $this->text;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
+    /**
+     * @param mixed $answers
+     */
+    public function setAnswers($answers)
+    {
+        $this->answers = $answers;
     }
 }

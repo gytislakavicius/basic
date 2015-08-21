@@ -16,9 +16,14 @@ class Question extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('text', 'text', array('label' => 'Question'))
-            ->add('type', 'text', array('label' => 'Type'))
-            ->add('difficulty', 'number', array('label' => 'Type'))
+            ->with('Question')
+                ->add('text', 'text', array('label' => 'Question'))
+                ->add('type', 'text', array('label' => 'Type'))
+                ->add('difficulty', 'number', array('label' => 'Dificulty'))
+            ->end()
+            ->with('Answers')
+                ->add('answers', 'entity', ['class' => 'AppBundle\Entity\Answer'])
+            ->end()
         ;
     }
 
