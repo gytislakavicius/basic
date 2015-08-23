@@ -57,6 +57,8 @@ services:
 
     basic.teams.generator:
         class: AppBundle\Teams\Generator
+        arguments:
+            - @doctrine.orm.entity_manager
         calls:
             - [setTeamNameGenerator, [@basic.teams.name_generator]]
             - [setTeamSize, [%basic.teams.size%]]

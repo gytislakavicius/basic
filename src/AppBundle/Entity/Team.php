@@ -31,7 +31,7 @@ class Team
     /**
      * @var string
      *
-     * @ORM\Column(name="score", type="string", length=255)
+     * @ORM\Column(name="score", type="string", length=255, nullable=true)
      */
     private $score;
 

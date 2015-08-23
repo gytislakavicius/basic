@@ -34,6 +34,14 @@ class User extends BaseUser
     protected $photoUrl;
 
     /**
+     * @var Team
+     *
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     */
+    protected $team;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -107,5 +115,21 @@ class User extends BaseUser
     public function setPhotoUrl($photoUrl)
     {
         $this->photoUrl = $photoUrl;
+    }
+
+    /**
+     * @return Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * @param Team $team
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
     }
 }

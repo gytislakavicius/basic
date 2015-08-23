@@ -19,12 +19,11 @@ class TeamNameGenerator
 
     public function addTeamName(Team $team)
     {
-        $randomName = array_rand($this->names, 1);
+        $randomKey = array_rand($this->names, 1);
+        $randomName = $this->names[$randomKey];
         $team->setName($randomName);
 
         //remove the used name
-        if (($key = array_search($randomName, $this->names)) !== false) {
-            unset($this->names[$key]);
-        }
+        unset($this->names[$randomKey]);
     }
 }
