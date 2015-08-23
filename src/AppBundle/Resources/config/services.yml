@@ -5,6 +5,34 @@ parameters:
         - Avengers
         - The detectives
         - Brainstorms
+        - El Diablos
+        - The Walkie Talkies
+        - French Toast Mafia
+        - Victorious Secret
+        - Here for Beer
+        - The Cereal Killers
+        - Kung Fu Pandas
+        - Smooth Operators
+        - F.B.I.
+        - "CSI: Miami"
+        - Predators
+        - Toxic Sushi
+        - The Flaming Pink Flamingos
+        - Wolverines
+        - The X-men
+        - Chocolate Orange Penguins
+        - Red Hot Trivia Peppers
+        - The Party Crashers
+        - Moon Walkers
+        - Time-Travellers
+        - Delta Ducks
+        - "It's Business Time"
+        - Banana Splits
+        - The Pirates
+        - Cowboys
+        - The Lanisters
+        - The Starks
+        - Black Crows
 
     basic.teams.size: 5
 
