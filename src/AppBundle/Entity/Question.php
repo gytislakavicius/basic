@@ -230,9 +230,9 @@ class Question
         if ($this->isActive()) {
             $now = new \DateTime();
 
-            return $this->getActiveTo()->diff($now)->format('%Y-%m-%d %H:%i:%s');
+            return $this->getActiveTo()->diff($now);
         }
 
-        return -1;
+        return new \DateInterval('PT0S');
     }
 }
