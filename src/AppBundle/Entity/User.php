@@ -37,7 +37,7 @@ class User extends BaseUser
      * @var Team
      *
      * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $team;
 

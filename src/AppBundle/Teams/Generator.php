@@ -9,8 +9,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Generator
 {
-    /** @var int */
-    private $teamSize = 1;
+    /**
+     * Or what's set on admin settings as 'team_size' value
+     * 
+     * @var int
+     */
+    private $teamSize = 5;
 
     /** @var TeamNameGenerator */
     private $teamNameGenerator;
@@ -41,14 +45,15 @@ class Generator
 
     public function generate()
     {
+        $this->removeExistingTeams();
         $users = $this->getActiveUsers();
         if (empty($users)) {
             throw new NotFoundHttpException('No active users found.');
         }
 
-        $chunkedUsers = $this->getChunkedUsers($users);
+        $teams = $this->getTeamsAsArray($users);
 
-        foreach ($chunkedUsers as $teamUsers) {
+        foreach ($teams as $teamUsers) {
             $team = new Team();
             $this->teamNameGenerator->addTeamName($team);
             $this->entityManager->persist($team);
@@ -58,6 +63,17 @@ class Generator
                 $user->setTeam($team);
                 $this->entityManager->persist($user);
             }
+        }
+
+        $this->entityManager->flush();
+    }
+
+    private function removeExistingTeams()
+    {
+        $teams = $this->entityManager->getRepository('AppBundle:Team')->findAll();
+
+        foreach ($teams as $team) {
+            $this->entityManager->remove($team);
         }
 
         $this->entityManager->flush();
@@ -73,12 +89,54 @@ class Generator
         return $queryBuilder->getResult();
     }
 
+    private function getTeamSize()
+    {
+        $setting = $this->entityManager->getRepository('AppBundle:Settings')->findOneBy(['name' => 'team_size']);
+        if ($setting !== null) {
+            $this->teamSize = (int)$setting->getValue();
+        }
+
+        return $this->teamSize;
+    }
+
     /**
      * @param User[] $users
      * @return array|bool
      */
-    private function getChunkedUsers($users)
+    private function getTeamsAsArray($users)
     {
-        return array_chunk($users, $this->teamSize);
+        $equalisedList = array_chunk($users, $this->getTeamSize());
+
+        do {
+            $initial = $equalisedList;
+            $equalisedList = $this->equalizeTeamSizes($equalisedList);
+        } while ($equalisedList != $initial);
+        
+        return $equalisedList;
+    }
+
+    /**
+     * @param $equalisedList
+     * @return array
+     */
+    private function equalizeTeamSizes($equalisedList)
+    {
+        $lastKey = count($equalisedList) - 1;
+        if (isset($equalisedList[$lastKey - 1])
+            && count($equalisedList[$lastKey - 1]) == count($equalisedList[$lastKey])) {
+            return $equalisedList;
+        }
+
+        for ($i = 1; $i <= $lastKey; $i++) {
+            if (isset($equalisedList[$lastKey - $i])
+                && count($equalisedList[$lastKey - $i]) > (count($equalisedList[$lastKey]) + 1)) {
+                $exchangeUser = end($equalisedList[$lastKey - $i]);
+                $equalisedList[$lastKey][] = $exchangeUser;
+                $keys = array_keys($equalisedList[$lastKey - $i]);
+                unset($equalisedList[$lastKey - $i][end($keys)]);
+            }
+        }
+
+        return $equalisedList;
     }
 }

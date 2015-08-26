@@ -34,8 +34,6 @@ parameters:
         - The Starks
         - Black Crows
 
-    basic.teams.size: 5
-
 services:
     basic.encryptor:
         class: AppBundle\Encryptor\AES256Encryptor
@@ -61,7 +59,6 @@ services:
             - @doctrine.orm.entity_manager
         calls:
             - [setTeamNameGenerator, [@basic.teams.name_generator]]
-            - [setTeamSize, [%basic.teams.size%]]
 
     basic.api:
         class: AppBundle\Service\Api
