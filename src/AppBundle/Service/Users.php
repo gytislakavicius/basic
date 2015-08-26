@@ -55,7 +55,6 @@ class Users
             $userEntity->setPhotoUrl($this->domain . '/public/images/people/' . $user->username . '.jpg');
             // todo: change to normal emil
             $userEntity->setEmail($user->username . '@nfq.lt');
-            $userEntity->setPlainPassword(uniqid());
 
             if ($user->username == 'murnieza') {
                 $userEntity->setEnabled(true);

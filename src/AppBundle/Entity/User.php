@@ -42,6 +42,13 @@ class User extends BaseUser
     protected $team;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $passwordChanged;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -131,5 +138,35 @@ class User extends BaseUser
     public function setTeam($team)
     {
         $this->team = $team;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPasswordChanged()
+    {
+        return $this->passwordChanged;
+    }
+
+    /**
+     * @param boolean $passwordChanged
+     */
+    public function setPasswordChanged($passwordChanged)
+    {
+        $this->passwordChanged = $passwordChanged;
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->plainPassword = uniqid();
+        $this->setPasswordChanged(false);
+
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->setPasswordChanged(true);
+        parent::setPlainPassword($password);
     }
 }
