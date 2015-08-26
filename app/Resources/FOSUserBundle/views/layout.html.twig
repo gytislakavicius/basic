@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% set appName = 'basic' %}
+
+{% block body %}
+    <section class="tablet-container content">
+        {% block fos_user_content %}{% endblock %}
+    </section>
+{% endblock %}
