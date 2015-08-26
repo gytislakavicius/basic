@@ -9,12 +9,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Generator
 {
+    const DEFAULT_TEAM_SIZE = 5;
+
     /**
      * Or what's set on admin settings as 'team_size' value
      * 
      * @var int
      */
-    private $teamSize = 5;
+    private $teamSize;
 
     /** @var TeamNameGenerator */
     private $teamNameGenerator;
@@ -38,6 +40,9 @@ class Generator
         $this->teamNameGenerator = $teamNameGenerator;
     }
 
+    /**
+     * @param EntityManager $entityManager
+     */
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -83,7 +88,7 @@ class Generator
     {
         $queryBuilder = $this->entityManager
             ->createQuery(
-                'SELECT u FROM AppBundle:User u WHERE u.enabled = true AND u.team IS NULL AND u.roles NOT LIKE :role'
+                'SELECT u FROM AppBundle:User u WHERE u.enabled = true AND u.roles NOT LIKE :role'
             )->setParameter('role', '%"ROLE_SUPER_ADMIN"%');
 
         return $queryBuilder->getResult();
@@ -91,9 +96,13 @@ class Generator
 
     private function getTeamSize()
     {
-        $setting = $this->entityManager->getRepository('AppBundle:Settings')->findOneBy(['name' => 'team_size']);
-        if ($setting !== null) {
-            $this->teamSize = (int)$setting->getValue();
+        if ($this->teamSize === null) {
+            $setting = $this->entityManager->getRepository('AppBundle:Settings')->findOneBy(['name' => 'team_size']);
+            if ($setting !== null) {
+                $this->teamSize = (int)$setting->getValue();
+            } else {
+                $this->teamSize = self::DEFAULT_TEAM_SIZE;
+            }
         }
 
         return $this->teamSize;
@@ -103,8 +112,9 @@ class Generator
      * @param User[] $users
      * @return array|bool
      */
-    private function getTeamsAsArray($users)
+    public function getTeamsAsArray($users)
     {
+        shuffle($users);
         $equalisedList = array_chunk($users, $this->getTeamSize());
 
         do {
@@ -122,8 +132,8 @@ class Generator
     private function equalizeTeamSizes($equalisedList)
     {
         $lastKey = count($equalisedList) - 1;
-        if (isset($equalisedList[$lastKey - 1])
-            && count($equalisedList[$lastKey - 1]) == count($equalisedList[$lastKey])) {
+        if (!isset($equalisedList[$lastKey - 1])
+            || count($equalisedList[$lastKey - 1]) == count($equalisedList[$lastKey])) {
             return $equalisedList;
         }
 
