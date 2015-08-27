@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% set appName = 'basic' %}
+
+{% block body %}
+    <section class="tablet-container content">
+        <h1>Klaida!</h1>
+        <p>
+            {{ exception.message }}
+        </p>
+    </section>
+{% endblock %}

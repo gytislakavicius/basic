@@ -84,9 +84,11 @@ class Users
         $user = $this->userManager->findUserByUsername($username);
 
         if (empty($user)) {
-            throw new NotFoundHttpException(sprintf('The user with username "%s" does not exist', $username));
+            throw new NotFoundHttpException(sprintf('Naudotojas "%s" neegzistuoja.', $username));
         } elseif ($user->isEnabled()) {
-            throw new AlreadySubmittedException(sprintf('The user with username "%s" is already activated', $username));
+            throw new AlreadySubmittedException(sprintf('Naudotojas "%s" jau užregistruotas.', $username));
+        } elseif ($user->getConfirmationToken() != null) {
+            throw new AlreadySubmittedException(sprintf('Naudotojui "%s" jau išsiųsta aktyvacijos nuoroda.', $username));
         }
 
         $user->setConfirmationToken(sha1(uniqid(mt_rand(), true)));
