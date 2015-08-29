@@ -12,6 +12,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        if (!$this->isGranted(['IS_AUTHENTICATED_FULLY'])) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
         return $this->render('default/index.html.twig');
     }
 }
