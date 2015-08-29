@@ -26,9 +26,19 @@ class ActivationController extends Controller
         if ($registerForm->isValid()) {
             $formData = $registerForm->getData();
 
-            $this->container->get('basic.users')->sendActivationEmail(strtolower($formData['VPavarde']));
+            try {
+                $this->container->get('basic.users')->sendActivationEmail(strtolower($formData['VPavarde']));
 
-            return $this->redirectToRoute('registration_success');
+                return $this->redirectToRoute('registration_success');
+            } catch(\Exception $ex) {
+                return $this->render(
+                    'default/register.html.twig',
+                    [
+                        'register_form' => $registerForm->createView(),
+                        'error'         => $ex->getMessage(),
+                    ]
+                );
+            }
         }
 
         return $this->render(

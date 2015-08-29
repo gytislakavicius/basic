@@ -86,7 +86,7 @@ class Users
         if (empty($user)) {
             throw new NotFoundHttpException(sprintf('Naudotojas "%s" neegzistuoja.', $username));
         } elseif ($user->isEnabled()) {
-            throw new AlreadySubmittedException(sprintf('Naudotojas "%s" jau užregistruotas.', $username));
+            throw new AlreadySubmittedException(sprintf('Naudotojas "%s" jau dalyvauja.', $username));
         } elseif ($user->getConfirmationToken() != null) {
             throw new AlreadySubmittedException(sprintf('Naudotojui "%s" jau išsiųsta aktyvacijos nuoroda.', $username));
         }

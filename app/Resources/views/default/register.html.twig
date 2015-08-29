@@ -6,8 +6,11 @@
 
 {% block body %}
     <section class="tablet-container content" ng-controller="RegisterCtrl as register" ng-submit="register.submit($event)" method="POST">
-        <h1>Registracija į žaidimą</h1>
-            <legend>Norėdami užsiregistruoti žaidime, įrašykite savo NFQ vartojo vardą (vpavarde), pakeičiant lietuviškus simbolius į lotyniškus ir spauskyte "Dalyvausiu".</legend>
+            <legend>Įvesk savo vardo pirmą raidę ir pavardę. Į tavo @nfq.lt el. paštą  atsiųsime nuorodą su slaptažodžio sukūrimo forma.</legend>
+            {% if error is defined %}
+                <error>{{ error }}</error>
+            {% endif %}
+
             {{ form_start(register_form) }}
             {{ form_widget(register_form) }}
             {{ form_end(register_form) }}
