@@ -1,18 +1,36 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% set pageClass = 'login' %}
+
 {% block fos_user_content %}
-    {% if error %}
-        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-    {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <div class="login-form-container">
+        <img class="login-bg-top" src="{{ asset('images/bg_line_top.svg') }}" alt="">
+        <img class="login-bg-right" src="{{ asset('images/bg_line_right.svg') }}" alt="">
+        <img class="login-bg-bottom" src="{{ asset('images/bg_line_bottom.svg') }}" alt="">
 
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        <a href="" class="logo">
+            <img src="{{ asset('images/logo.svg') }}" alt="">
+        </a>
 
-        <input type="password" id="password" name="_password" required="required" />
+        <img src="{{ asset('images/robot.svg') }}" class="robot" alt="">
 
-        <input type="submit" id="_submit" name="_submit" value="PRISIJUNGTI" />
-    </form>
-    <a href="{{ path('fos_user_registration_register') }}">Registracija</a>
+        {% if error %}
+            <div class="error-msg"><img src="{{ asset('images/error.svg') }}" alt=""> {{ error|trans({}, 'FOSUserBundle') }}</div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" required="required" />
+            <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" required="required" />
+
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" hidden />
+
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+        </form>
+
+        <a class="register-link" href="{{ path('fos_user_registration_register') }}">Registruotis <img src="{{ asset('images/lock.svg') }}" alt=""></a>
+    </div>
+
 {% endblock fos_user_content %}
