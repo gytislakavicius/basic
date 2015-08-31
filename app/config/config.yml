@@ -94,8 +94,6 @@ fos_user:
     from_email:
         address: game@nfq.lt
         sender_name: NFQ Game
-    resetting:
-        token_ttl: 600
 
 sonata_block:
     default_contexts: [cms]

@@ -1,0 +1,30 @@
+
+
+
+{% extends 'base.html.twig' %}
+
+{% set appName = 'basicPassRequest' %}
+{% set pageClass = 'common-page' %}
+
+{% block title %}Atgauk savo slaptažodį{% endblock %}
+
+{% block body %}
+    <section class="tablet-container content">
+        <a href="" class="logo">
+            <img src="{{ asset('images/logo_large.svg') }}" alt="">
+        </a>
+
+        <legend>Įrašyk savo naująjį slaptažodį.</legend>
+
+        <div class="common-form{% if invalid_username is defined %} has-error{% endif %}">
+
+            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+                {{ form_widget(form) }}
+                <button type="submit">Pakeisti</button>
+            </form>
+
+        </div>
+    </section>
+{% endblock %}
+
+

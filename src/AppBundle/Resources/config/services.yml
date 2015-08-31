@@ -91,6 +91,11 @@ services:
         tags:
             - { name: form.type, alias: fos_user_change_password }
 
+    fos_user.resetting.form.type:
+        class: AppBundle\Form\ResettingFormType
+        tags:
+            - { name: form.type, alias: fos_user_resetting }
+
     basic.listener.force_pass_change:
         class: AppBundle\EventListener\ForcePassChangeListener
         arguments: [@router, @security.token_storage]
