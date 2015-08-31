@@ -6,6 +6,8 @@ use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserAnswer;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityNotFoundException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class Api
@@ -131,13 +133,19 @@ class Api
      * @param User      $user
      * @param string    $questionId
      * @param string    $answer
-     * @return array
+     *
+     * @throws EntityNotFoundException
+     * @throws AccessDeniedException
      */
     public function setAnswer(User $user, $questionId, $answer)
     {
-        $return = 'success';
+        $question = $this->em->getRepository('AppBundle:Question')->find($questionId);
+        if (empty($question)) {
+            throw new EntityNotFoundException;
+        }
 
-        try {
+        $currentTime = new \DateTime();
+        if ($question->getActiveFrom() <= $currentTime && $currentTime <= $question->getActiveTo()) {
             $userAnswer = $this->em->getRepository('AppBundle:UserAnswer')->findOneBy(
                 ['user' => $user->getId(), 'question' => $questionId]
             );
@@ -145,17 +153,15 @@ class Api
             if (empty($userAnswer)) {
                 $userAnswer = new UserAnswer();
                 $userAnswer->setUser($user);
-                $userAnswer->setQuestion($this->em->getRepository('AppBundle:Question')->find($questionId));
+                $userAnswer->setQuestion($question);
             }
 
             $userAnswer->setAnswer($answer);
 
             $this->em->persist($userAnswer);
             $this->em->flush();
-        } catch (\Exception $e) {
-            $return = 'error';
+        } else {
+            throw new AccessDeniedException;
         }
-
-        return $return;
     }
 }
