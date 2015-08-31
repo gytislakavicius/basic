@@ -33,6 +33,11 @@ parameters:
         - The Lanisters
         - The Starks
         - Black Crows
+        - T-Rexes
+        - Terminators
+        - Road Runners    
+        - Jaguars     
+        - Razzle Dazzle
 
 services:
     basic.encryptor:
