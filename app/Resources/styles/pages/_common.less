@@ -1,0 +1,75 @@
+body.common-page {
+  background: @primary-background;
+
+  .logo {
+    display: block;
+    margin: 0 auto;
+    width: 176px;
+    margin-top: 53px;
+    margin-bottom: 93px;
+  }
+
+  legend, p {
+    color: black;
+    font-family: @primary-font-family;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    margin-bottom: 20px;
+  }
+
+  input:not([type='checkbox']), button {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    font-family: @primary-font-family;
+  }
+
+  input[type='text'],
+  input[type='password'] {
+    padding: 0 33px;
+    height: 64px;
+    background-color: white;
+    border: 0;
+    color: #bbb;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    outline: 0;
+    display: block;
+  }
+
+  button {
+    height: 70px;
+    background-color: @primary-orange-color;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+    text-transform: uppercase;
+
+    &:hover {
+      background: lighten(@primary-orange-color, 10%);
+    }
+  }
+
+  .common-form {
+    &.has-error {
+      input {
+        background-color: #fee9e9;
+        border: 1px solid red;
+        color: #ce0000;
+      }
+    }
+  }
+
+  .success-icon {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 71px;
+  }
+}

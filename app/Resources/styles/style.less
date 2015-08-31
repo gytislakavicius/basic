@@ -2,6 +2,10 @@
 @import '_variables';
 @import '_assets';
 
+// Page specific style
+@import 'pages/_login';
+@import 'pages/_common';
+
 html,
 body {
     height: 100%;
@@ -10,7 +14,10 @@ body {
 @footer-height: 38px;
 
 .content {
+    position: relative;
     min-height: 100%;
+    max-width: 410px;
+    padding: 0 10px;
     margin-bottom: -@footer-height;
 
     &::after {
@@ -26,4 +33,8 @@ body {
 
 .footer {
     height: @footer-height;
+}
+
+a {
+    color: #fc6b0e;
 }

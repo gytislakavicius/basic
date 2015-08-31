@@ -1,0 +1,110 @@
+body.login {
+  background: @main-page-background;
+  
+  .login-form-container {
+    position: relative;
+    max-width: 410px;
+    padding: 0 10px;
+    margin: 0 auto;
+    
+    .login-bg-top,
+    .login-bg-bottom,
+    .login-bg-right {
+      position: absolute;
+    }
+
+    .login-bg-top {
+      top: -37px;
+      left: 35px;
+    }
+
+    .login-bg-right {
+      right: 0;
+      top: 201px;
+    }
+
+    .login-bg-bottom {
+      bottom: -110px;
+      left: 20px;
+    }
+
+    .logo {
+      margin: 37px 0 53px 0;
+      display: block;
+    }
+
+    .robot {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      display: block;
+      margin-bottom: -90px;
+    }
+
+    input:not([type='checkbox']) {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin: 0 auto;
+      display: block;
+      font-family: @primary-font-family;
+    }
+
+    input[type='text'],
+    input[type='password'] {
+      padding: 0 33px;
+      height: 64px;
+      background-color: white;
+      border: 0;
+      color: #bbb;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 23px;
+      outline: 0;
+      display: block;
+    }
+
+    input[type='submit'] {
+      height: 70px;
+      background-color: @primary-orange-color;
+      border: 0;
+      outline: 0;
+      color: white;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 25px;
+      text-transform: uppercase;
+
+      &:hover {
+        background: lighten(@primary-orange-color, 10%);
+      }
+    }
+
+    #username {
+      border-bottom: 1px solid gainsboro;
+    }
+  }
+
+  .register-link {
+    display: block;
+    margin: 0 auto;
+    margin-top: 38px;
+    width: 155px;
+    position: relative;
+    z-index: 2;
+    height: 25px;
+    color: white;
+    font-family: @primary-font-family;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    img {
+      position: relative;
+      top: 2px;
+      left: 5px;
+    }
+  }
+}

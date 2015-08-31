@@ -5,12 +5,13 @@
         <meta name="robots" content="noindex,nofollow"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{% block title %}The Basic Game{% endblock %}</title>
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900' rel='stylesheet' type='text/css'>
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body class="{{ pageClass }}">
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('js/require.js') }}"></script>

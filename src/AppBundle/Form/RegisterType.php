@@ -15,7 +15,16 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('VPavarde')
+            ->add(
+                'VPavarde',
+                'text',
+                array(
+                    'attr' => array(
+                        'placeholder' => 'vpavarde',
+                    ),
+                    'label' => false,
+                )
+            )
             ->add('Dalyvausiu!', 'submit')
         ;
     }

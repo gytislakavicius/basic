@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% set appName = 'basicRegister' %}
+{% set pageClass = 'common-page' %}
 
 {% block title %}Registracija į žaidimą{% endblock %}
 
 {% block body %}
     <section class="tablet-container content">
+        <a href="" class="logo">
+            <img src="{{ asset('images/logo_large.svg') }}" alt="">
+        </a>
+
+        <img class="success-icon" src="{{ asset('images/success.svg') }}" alt="">
+
         <p>Jėga! Išsiuntėme nuorodą su prisijungimo forma tau į el. paštą ;)</p>
         <p>P.S el. paštą gali pasitikrinti naršyklėje: <a href="https://webmail.nfq.lt">https://webmail.nfq.lt</a></p>
     </section>
-    <a href="/">Žaidimas</a>
 {% endblock %}
