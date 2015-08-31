@@ -9,6 +9,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @Route("/", name="fos_user_profile_show")
      */
     public function indexAction()
     {
