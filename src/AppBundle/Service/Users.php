@@ -3,7 +3,7 @@
 namespace AppBundle\Service;
 
 use FOS\UserBundle\Doctrine\UserManager;
-use FOS\UserBundle\Mailer\Mailer;
+use FOS\UserBundle\Mailer\MailerInterface;
 use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -15,7 +15,7 @@ class Users
     /** @var UserManager */
     protected $userManager;
 
-    /** @var Mailer */
+    /** @var MailerInterface */
     protected $mailer;
 
     /** @var string */
@@ -25,10 +25,10 @@ class Users
     protected $domain;
 
     /**
-     * @param UserManager $userManager
-     * @param Mailer      $mailer
+     * @param UserManager     $userManager
+     * @param MailerInterface $mailer
      */
-    public function __construct(UserManager $userManager, Mailer $mailer, $kernelDir, $domain)
+    public function __construct(UserManager $userManager, MailerInterface $mailer, $kernelDir, $domain)
     {
         $this->userManager = $userManager;
         $this->mailer      = $mailer;

@@ -65,7 +65,7 @@ services:
         class: AppBundle\Service\Users
         arguments:
             - @fos_user.user_manager.default
-            - @fos_user.mailer.default
+            - @fos_user.mailer.twig_swift
             - %kernel.root_dir%
             - %url%
 
