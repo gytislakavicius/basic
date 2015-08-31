@@ -82,11 +82,11 @@ class Users
         $user = $this->userManager->findUserByUsername($username);
 
         if (empty($user)) {
-            throw new NotFoundHttpException(sprintf('Naudotojas "%s" neegzistuoja.', $username));
+            throw new NotFoundHttpException('Upps, tokio žmogaus neradom! Pasitikrink ar viską įvedei be klaidų.');
         } elseif ($user->isEnabled()) {
-            throw new AlreadySubmittedException(sprintf('Naudotojas "%s" jau dalyvauja.', $username));
+            throw new AlreadySubmittedException('Upps, atrodo kad tu jau dalyvauji.');
         } elseif ($user->getConfirmationToken() != null) {
-            throw new AlreadySubmittedException(sprintf('Naudotojui "%s" jau išsiųsta aktyvacijos nuoroda.', $username));
+            throw new AlreadySubmittedException('Pasitikrink pašto dėžutę! Tau jau buvo išsiųsta aktyvacijos nuoroda.');
         }
 
         $user->setConfirmationToken(sha1(uniqid(mt_rand(), true)));
