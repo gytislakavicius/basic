@@ -9,7 +9,6 @@
             _second = 1000,
             _minute = _second * 60,
             _hour = _minute * 60,
-            _day = _hour * 24,
             timer;
 
         function showRemaining() {
@@ -36,7 +35,7 @@
         timer = setInterval(showRemaining, 1000);
     </script>
 
-    <section class="container content idle-screen" ng-controller="TimerCtrl as timer">
+    <section class="container content idle-screen">
         <img class="idle-bg" src="{{ asset('images/idle_bg.svg') }}" alt="">
         <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
         <h1 class="idle-title">
@@ -46,17 +45,17 @@
         <div class="idle-countdown clearfix">
             <div class="hours">
                 <div class="count" id="hours"></div>
-                <span class="label">Hours</span>
+                <span class="label">Valandos</span>
             </div>
             <span class="separator">:</span>
             <div class="minutes">
                 <div class="count" id="minutes"></div>
-                <span class="label">Minutes</span>
+                <span class="label">Minutės</span>
             </div>
             <span class="separator">:</span>
             <div class="seconds">
                 <div class="count" id="seconds"></div>
-                <span class="label">Seconds</span>
+                <span class="label">Sekundės</span>
             </div>
             <span id="idle-timer"></span>
         </div>
