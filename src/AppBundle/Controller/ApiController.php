@@ -51,4 +51,24 @@ class ApiController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/game/answer/{questionId}/{answer}", name="api.answer")
+     *
+     * @param $questionId
+     * @param $answer
+     *
+     * @return JsonResponse
+     */
+    public function answerAction($questionId, $answer)
+    {
+        /** @var Api $apiService */
+        $apiService = $this->get('basic.api');
+
+        return new JsonResponse(
+            [
+                'status' => $apiService->setAnswer($this->getUser(), $questionId, $answer),
+            ]
+        );
+    }
 }

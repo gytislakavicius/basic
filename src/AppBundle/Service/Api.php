@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserAnswer;
 use Doctrine\ORM\EntityManager;
 
 /**
@@ -124,5 +125,37 @@ class Api
         $setting = $this->em->getRepository('AppBundle:Settings')->findOneBy(['name' => $name]);
 
         return $setting ? $setting->getValue() : null;
+    }
+
+    /**
+     * @param User      $user
+     * @param string    $questionId
+     * @param string    $answer
+     * @return array
+     */
+    public function setAnswer(User $user, $questionId, $answer)
+    {
+        $return = 'success';
+
+        try {
+            $userAnswer = $this->em->getRepository('AppBundle:UserAnswer')->findOneBy(
+                ['user' => $user->getId(), 'question' => $questionId]
+            );
+
+            if (empty($userAnswer)) {
+                $userAnswer = new UserAnswer();
+                $userAnswer->setUser($user);
+                $userAnswer->setQuestion($this->em->getRepository('AppBundle:Question')->find($questionId));
+            }
+
+            $userAnswer->setAnswer($answer);
+
+            $this->em->persist($userAnswer);
+            $this->em->flush();
+        } catch (\Exception $e) {
+            $return = 'error';
+        }
+
+        return $return;
     }
 }
