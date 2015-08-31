@@ -10,13 +10,23 @@ class ChangePasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('new', 'repeated', array(
-            'type' => 'password',
-            'options' => array('translation_domain' => 'FOSUserBundle'),
-            'first_options' => array('label' => 'form.new_password'),
-            'second_options' => array('label' => 'form.new_password_confirmation'),
-            'invalid_message' => 'fos_user.password.mismatch',
-        ));
+        $builder
+            ->add(
+                'new',
+                'password',
+                [
+                    'label' => false,
+                    'attr' => [
+                        'placeholder' => 'Naujas slaptažodis',
+                    ],
+                    'translation_domain' => 'FOSUserBundle',
+                ]
+            )
+            ->add(
+                'IŠSAUGOTI SLAPTAŽODĮ',
+                'submit'
+            )
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
