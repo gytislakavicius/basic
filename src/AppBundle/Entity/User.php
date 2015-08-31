@@ -49,6 +49,13 @@ class User extends BaseUser
     protected $passwordChanged;
 
     /**
+     * @var double
+     *
+     * @ORM\Column(name="score", type="float", nullable=true)
+     */
+    private $score;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -154,6 +161,22 @@ class User extends BaseUser
     public function setPasswordChanged($passwordChanged)
     {
         $this->passwordChanged = $passwordChanged;
+    }
+
+    /**
+     * @return float
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param float $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
     }
 
     public function __construct()

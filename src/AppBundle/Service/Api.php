@@ -4,7 +4,10 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserAnswer;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityNotFoundException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class Api
@@ -124,5 +127,64 @@ class Api
         $setting = $this->em->getRepository('AppBundle:Settings')->findOneBy(['name' => $name]);
 
         return $setting ? $setting->getValue() : null;
+    }
+
+    /**
+     * @param User      $user
+     * @param string    $questionId
+     * @param string    $answer
+     *
+     * @throws EntityNotFoundException
+     * @throws AccessDeniedException
+     */
+    public function setAnswer($user, $questionId, $answer)
+    {
+        $question = $this->em->getRepository('AppBundle:Question')->find($questionId);
+        if (empty($question) || empty($user) || empty($user->getTeam())) {
+            throw new EntityNotFoundException;
+        }
+
+        $currentTime = new \DateTime();
+        if ($question->getActiveFrom() <= $currentTime && $currentTime <= $question->getActiveTo()) {
+            $userAnswer = $this->em->getRepository('AppBundle:UserAnswer')->findOneBy(
+                ['user' => $user->getId(), 'question' => $questionId]
+            );
+
+            if (empty($userAnswer)) {
+                $userAnswer = new UserAnswer();
+                $userAnswer->setUser($user);
+                $userAnswer->setQuestion($question);
+                $userAnswer->setTeam($user->getTeam());
+            }
+
+            $userAnswer->setAnswer($answer);
+            $userAnswer->setCorrect($this->isAnswerCorrect($question, $answer));
+            $userAnswer->setAnswered(new \DateTime());
+
+            $this->em->persist($userAnswer);
+            $this->em->flush();
+        } else {
+            throw new AccessDeniedException;
+        }
+    }
+
+    /**
+     * @param Question $question
+     * @param string   $answer
+     * @return bool
+     */
+    private function isAnswerCorrect(Question $question, $answer)
+    {
+        $correct = false;
+
+        $correctAnswer = $this->em->getRepository('AppBundle:Answer')->findOneBy(
+            ['question' => $question->getId(), 'correct' => true]
+        );
+
+        if ($correctAnswer->getId() == $answer || strtolower($correctAnswer->getText()) == strtolower($answer)) {
+            $correct = true;
+        }
+
+        return $correct;
     }
 }

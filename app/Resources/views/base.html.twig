@@ -11,7 +11,7 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body class="{{ pageClass }}">
+    <body {% if pageClass is defined %}class="{{ pageClass }}"{% endif %}>
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('js/require.js') }}"></script>

@@ -33,6 +33,27 @@ parameters:
         - The Lanisters
         - The Starks
         - Black Crows
+        - T-Rexes
+        - Terminators
+        - Road Runners    
+        - Jaguars     
+        - Razzle Dazzle
+        - House Gryffindor
+        - House Slytherin
+        - House Ravenclaw
+        - House Hufflepuff
+        - "The Night's watch"
+        - Pet Shop Boys
+        - Tailor Swift fans
+        - The Empire
+        - The Rebellion
+        - Postapocalyptic bodybuilders
+        - The Alliance
+        - The Horde
+        - Schrodingers team
+        - Illuminati
+        - Inside Job
+        - Counter Terrorists        
 
 services:
     basic.encryptor:

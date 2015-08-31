@@ -29,9 +29,9 @@ class Team
     private $name;
 
     /**
-     * @var string
+     * @var double
      *
-     * @ORM\Column(name="score", type="string", length=255, nullable=true)
+     * @ORM\Column(name="score", type="float", nullable=true)
      */
     private $score;
 
@@ -72,7 +72,7 @@ class Team
     /**
      * Set score
      *
-     * @param string $score
+     * @param double $score
      * @return Team
      */
     public function setScore($score)
@@ -85,7 +85,7 @@ class Team
     /**
      * Get score
      *
-     * @return string 
+     * @return double
      */
     public function getScore()
     {
