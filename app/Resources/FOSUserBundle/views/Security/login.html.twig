@@ -22,8 +22,8 @@
         <form action="{{ path("fos_user_security_check") }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}" required="required" />
-            <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}" required="required" />
+            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="vpavarde" required="required" />
+            <input type="password" id="password" name="_password" placeholder="Slaptažodis" required="required" />
 
             <input type="checkbox" id="remember_me" name="_remember_me" value="on" hidden />
 
