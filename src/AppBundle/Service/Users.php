@@ -57,9 +57,7 @@ class Users
             $userEntity->setEmail($user->username . '@nfq.lt');
 
             if ($user->username == 'murnieza') {
-                $userEntity->setEnabled(true);
                 $userEntity->setSuperAdmin(true);
-                $userEntity->setPlainPassword('admin');
             }
 // Uncomment following to download images
 //$photoUrl = 'https://people.nfq.lt/media/team/' . preg_replace('/^\/avatar\/30\/30\/([^.]*).*/', '$1', $user->photo->url) . '_190x190.jpg';
