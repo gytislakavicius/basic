@@ -55,7 +55,7 @@ class UserAnswer
     /**
      * @var \DateTime $answered
      *
-     * @ORM\Column(name="answered", type="date")
+     * @ORM\Column(name="answered", type="datetime")
      */
     private $answered;
 
