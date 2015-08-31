@@ -58,7 +58,7 @@ class ApiController extends Controller
      * Returns status:
      * success - if everything went fine
      * expired - if question is no longer active
-     * not found - if question was not found
+     * not found - if question, user or team was not found
      *
      * @Route("/game/answer/{questionId}/{answer}", name="api.answer")
      *
@@ -66,6 +66,8 @@ class ApiController extends Controller
      * @param $answer
      *
      * @return JsonResponse
+     *
+     * @throws \Exception
      */
     public function answerAction($questionId, $answer)
     {
@@ -82,6 +84,9 @@ class ApiController extends Controller
                     break;
                 case $e instanceof AccessDeniedException:
                     $status = 'expired';
+                    break;
+                default:
+                    throw $e;
             }
         }
 
