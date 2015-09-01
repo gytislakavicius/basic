@@ -76,7 +76,7 @@ class PointCalculationLogic
 
             $total = 0;
             $correct = 0;
-
+            /** @var UserAnswer $teamAnswerForQuestion */
             foreach ($teamAnswersForQuestion as $teamAnswerForQuestion) {
                 if ($teamAnswerForQuestion->isCorrect()) {
                     $correct++;
