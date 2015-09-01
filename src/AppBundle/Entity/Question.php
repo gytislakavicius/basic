@@ -43,9 +43,9 @@ class Question
     private $description;
 
     /**
-     * @var string
+     * @var double
      *
-     * @ORM\Column(name="difficulty", type="string", length=255)
+     * @ORM\Column(name="difficulty", type="float")
      */
     private $difficulty;
 
@@ -123,7 +123,7 @@ class Question
     /**
      * Set difficulty
      *
-     * @param string $difficulty
+     * @param float $difficulty
      * @return Question
      */
     public function setDifficulty($difficulty)
@@ -136,7 +136,7 @@ class Question
     /**
      * Get difficulty
      *
-     * @return string 
+     * @return float
      */
     public function getDifficulty()
     {

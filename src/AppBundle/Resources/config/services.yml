@@ -96,3 +96,8 @@ services:
         arguments: [@router, @security.token_storage]
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: check, priority: 1 }
+
+    basic.pcl:
+        class: AppBundle\Service\PointCalculationLogic
+        arguments:
+            - @doctrine.orm.entity_manager
