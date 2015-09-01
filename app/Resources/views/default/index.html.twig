@@ -10,7 +10,7 @@
             _minute = _second * 60,
             _hour = _minute * 60,
             timer;
-        
+
         function showRemaining() {
             var now = new Date();
             var distance = end - now;
@@ -35,9 +35,9 @@
         timer = setInterval(showRemaining, 1000);
     </script>
 
+    <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
     <section class="container content idle-screen">
         <img class="idle-bg" src="{{ asset('images/idle_bg.svg') }}" alt="">
-        <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
         <h1 class="idle-title">
             Iki žaidimo
             pradžios liko
