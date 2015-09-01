@@ -1,1 +1,393 @@
-<img src="http://image.slidesharecdn.com/michielmeekelsmonkeytalk-150531202138-lva1-app6892/95/when-online-goes-offline-monkeytalk-2015-spring-edition-1-638.jpg?cb=1433149597" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>NFQ Offline Day 2015</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900&subset=latin-ext' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 8]>
+  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <button class="navigation__hamburger" type="button" name="hamburger">
+    <svg height="17" width="22" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17">
+        <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 2.43 L 20.78 2.43 C 21.45 2.43 22 1.88 22 1.21 C 22 0.54 21.45 0 20.78 0 L 1.22 0 C 0.55 0 0 0.54 0 1.21 C 0 1.88 0.55 2.43 1.22 2.43" />
+        <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 7.29 L 20.78 7.29 C 21.45 7.29 22 6.74 22 6.07 C 22 5.4 21.45 4.86 20.78 4.86 L 1.22 4.86 C 0.55 4.86 0 5.4 0 6.07 C 0 6.74 0.55 7.29 1.22 7.29" />
+        <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 12.14 L 20.78 12.14 C 21.45 12.14 22 11.6 22 10.93 C 22 10.26 21.45 9.71 20.78 9.71 L 1.22 9.71 C 0.55 9.71 0 10.26 0 10.93 C 0 11.6 0.55 12.14 1.22 12.14" />
+        <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 17 L 20.78 17 C 21.45 17 22 16.46 22 15.79 C 22 15.11 21.45 14.57 20.78 14.57 L 1.22 14.57 C 0.55 14.57 0 15.11 0 15.79 C 0 16.46 0.55 17 1.22 17" />
+    </svg>
+  </button>
+  <nav class="sidebar" role="navigation">
+    <a class="logo js-nav-trigger" href="#home"><img src="img/logo.svg" alt="home" /></a>
+    <ul class="navigation">
+      <li>
+        <a class="js-nav-trigger" href="#program">
+          <span>
+            <svg height="17" width="22" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17">
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 2.43 L 20.78 2.43 C 21.45 2.43 22 1.88 22 1.21 C 22 0.54 21.45 0 20.78 0 L 1.22 0 C 0.55 0 0 0.54 0 1.21 C 0 1.88 0.55 2.43 1.22 2.43" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 7.29 L 20.78 7.29 C 21.45 7.29 22 6.74 22 6.07 C 22 5.4 21.45 4.86 20.78 4.86 L 1.22 4.86 C 0.55 4.86 0 5.4 0 6.07 C 0 6.74 0.55 7.29 1.22 7.29" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 12.14 L 20.78 12.14 C 21.45 12.14 22 11.6 22 10.93 C 22 10.26 21.45 9.71 20.78 9.71 L 1.22 9.71 C 0.55 9.71 0 10.26 0 10.93 C 0 11.6 0.55 12.14 1.22 12.14" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 1.22 17 L 20.78 17 C 21.45 17 22 16.46 22 15.79 C 22 15.11 21.45 14.57 20.78 14.57 L 1.22 14.57 C 0.55 14.57 0 15.11 0 15.79 C 0 16.46 0.55 17 1.22 17" />
+            </svg>
+            <span class="navigation__label">Programa</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="js-nav-trigger" href="#speakers">
+          <span>
+            <svg height="17" width="22" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 17">
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 0 15 L 0 17 L 10 17 L 10 15 C 10 12.58 8.28 10.56 6 10.1 L 6 9.86 C 7.72 9.41 9 7.86 9 6 L 9 4 C 9 1.79 7.21 0 5 0 C 2.79 0 1 1.79 1 4 L 1 6 C 1 7.86 2.28 9.41 4 9.86 L 4 10.1 C 1.72 10.56 0 12.58 0 15 L 0 15 Z M 3 6 L 3 4 C 3 2.9 3.9 2 5 2 C 6.1 2 7 2.9 7 4 L 7 6 C 7 7.1 6.1 8 5 8 C 3.9 8 3 7.1 3 6 L 3 6 Z M 5 12 C 6.65 12 8 13.35 8 15 L 2 15 C 2 13.35 3.35 12 5 12 L 5 12 Z M 5 12" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 12 15 L 12 17 L 22 17 L 22 15 C 22 12.58 20.28 10.56 18 10.1 L 18 9.86 C 19.72 9.41 21 7.86 21 6 L 21 4 C 21 1.79 19.21 0 17 0 C 14.79 0 13 1.79 13 4 L 13 6 C 13 7.86 14.28 9.41 16 9.86 L 16 10.1 C 13.72 10.56 12 12.58 12 15 L 12 15 Z M 15 6 L 15 4 C 15 2.9 15.9 2 17 2 C 18.1 2 19 2.9 19 4 L 19 6 C 19 7.1 18.1 8 17 8 C 15.9 8 15 7.1 15 6 L 15 6 Z M 17 12 C 18.65 12 20 13.35 20 15 L 14 15 C 14 13.35 15.35 12 17 12 L 17 12 Z M 17 12" />
+            </svg>
+            <span class="navigation__label">Pranešėjai</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="js-nav-trigger" href="#workshops">
+          <span>
+            <svg height="22" width="22" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 11 0 C 4.93 0 0 4.93 0 11 C 0 17.07 4.93 22 11 22 C 17.07 22 22 17.07 22 11 C 22 4.93 17.07 0 11 0 L 11 0 Z M 11 20.17 C 5.95 20.17 1.83 16.05 1.83 11 C 1.83 5.95 5.95 1.83 11 1.83 C 16.05 1.83 20.17 5.95 20.17 11 C 20.17 16.05 16.05 20.17 11 20.17 L 11 20.17 Z M 11 20.17" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 11 4.58 C 7.46 4.58 4.58 7.46 4.58 11 C 4.58 14.54 7.46 17.42 11 17.42 C 14.54 17.42 17.42 14.54 17.42 11 C 17.42 7.46 14.54 4.58 11 4.58 L 11 4.58 Z M 11 15.58 C 8.47 15.58 6.42 13.53 6.42 11 C 6.42 8.47 8.47 6.42 11 6.42 C 13.53 6.42 15.58 8.47 15.58 11 C 15.58 13.53 13.53 15.58 11 15.58 L 11 15.58 Z M 11 15.58" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 11 9.17 C 9.99 9.17 9.17 9.99 9.17 11 C 9.17 12.01 9.99 12.83 11 12.83 C 12.01 12.83 12.83 12.01 12.83 11 C 12.83 9.99 12.01 9.17 11 9.17" />
+            </svg>
+            <span class="navigation__label">Workshop`ai</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="js-nav-trigger" href="#game">
+          <span>
+            <svg height="14" width="24" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 14">
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 21 3 C 21 1.35 19.65 0 18 0 L 3 0 C 1.35 0 0 1.35 0 3 L 0 11 C 0 12.65 1.35 14 3 14 L 18 14 C 19.65 14 21 12.65 21 11 C 22.65 11 24 9.65 24 8 L 24 6 C 24 4.35 22.65 3 21 3 L 21 3 Z M 22 8 C 22 8.55 21.55 9 21 9 C 19.9 9 19 9.9 19 11 C 19 11.55 18.55 12 18 12 L 3 12 C 2.45 12 2 11.55 2 11 L 2 3 C 2 2.45 2.45 2 3 2 L 18 2 C 18.55 2 19 2.45 19 3 C 19 4.1 19.9 5 21 5 C 21.55 5 22 5.45 22 6 L 22 8 L 22 8 Z M 22 8" />
+                <path fill="#ff6b00" fill-rule="evenodd" d="M 4 4 L 15 4 L 15 10 L 4 10 L 4 4 Z M 4 4" />
+            </svg>
+            <span class="navigation__label">Žaidimas</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="pages">
+    <section class="pages__section pages--landing" id="home">
+      <div class="background__text">
+        <div class="text__top">
+          <span class="text--small">Rugsėjis</span>
+          <span class="text--large">04/15</span>
+        </div>
+        <div class="text__bottom">Offline Day</div>
+      </div>
+      <div class="background">
+        <img class="background__robot" src="img/robot.svg" alt="background" />
+        <svg id="line_top_left" class="background__line line--top-left" width="418px" height="273px" viewBox="0 0 418 273" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g transform="translate(-257.000000, 0.000000)">
+            <g transform="translate(466.500000, 136.500000) rotate(-180.000000) translate(-466.500000, -136.500000) translate(257.500000, 0.000000)">
+                <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M366.025,20.066 L321.127,20.066 C314.348,20.066 308.833,25.581 308.833,32.359 L308.833,100.775 C308.833,107.554 314.348,113.069 321.127,113.069 L405.578,113.069 C410.588,113.069 414.664,117.145 414.664,122.155 L414.664,146.743 C414.664,151.753 410.588,155.829 405.578,155.829 L359.611,155.829 C352.833,155.829 347.317,161.344 347.317,168.122 L347.317,204.469 C347.317,209.479 343.241,213.555 338.231,213.555 L311.506,213.555 C306.496,213.555 302.419,209.479 302.419,204.469 L302.419,177.743 C302.419,170.964 296.904,165.45 290.126,165.45 L253.78,165.45 C247.001,165.45 241.486,170.964 241.486,177.743 L241.486,223.71 C241.486,228.721 237.41,232.797 232.4,232.797 L128.707,232.797 C123.697,232.797 119.62,228.721 119.62,223.71 L119.62,168.122 C119.62,161.344 114.105,155.829 107.327,155.829 L70.981,155.829 C64.203,155.829 58.688,161.344 58.688,168.122 L58.688,194.848 C58.688,199.858 54.611,203.934 49.601,203.934 L13.255,203.934 C6.477,203.934 0.961,209.449 0.961,216.227 L0.961,272.884 L4.168,272.884 L4.168,216.227 C4.168,211.217 8.245,207.141 13.255,207.141 L49.601,207.141 C56.379,207.141 61.894,201.626 61.894,194.848 L61.894,168.122 C61.894,163.112 65.971,159.036 70.981,159.036 L107.327,159.036 C112.337,159.036 116.413,163.112 116.413,168.122 L116.413,223.71 C116.413,230.489 121.929,236.004 128.707,236.004 L232.4,236.004 C239.178,236.004 244.693,230.489 244.693,223.71 L244.693,177.743 C244.693,172.733 248.77,168.657 253.78,168.657 L290.126,168.657 C295.136,168.657 299.212,172.733 299.212,177.743 L299.212,204.469 C299.212,211.247 304.727,216.762 311.506,216.762 L338.231,216.762 C345.009,216.762 350.524,211.247 350.524,204.469 L350.524,168.122 C350.524,163.112 354.601,159.036 359.611,159.036 L405.578,159.036 C412.356,159.036 417.871,153.521 417.871,146.743 L417.871,122.155 C417.871,115.377 412.356,109.862 405.578,109.862 L321.127,109.862 C316.117,109.862 312.04,105.786 312.04,100.775 L312.04,32.359 C312.04,27.349 316.117,23.273 321.127,23.273 L366.025,23.273 L366.025,20.066" id="Fill-1" sketch:type="MSShapeGroup"></path>
+                <path fill="none" stroke="#8cd5c9" stroke-width="4px" fill-rule="evenodd"fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd"  d="M394.71,21.67 C394.71,27.19 390.235,31.666 384.714,31.666 C379.193,31.666 374.718,27.19 374.718,21.67 C374.718,16.149 379.193,11.674 384.714,11.674 C390.235,11.674 394.71,16.149 394.71,21.67" id="Fill-2" sketch:type="MSShapeGroup"></path>
+                <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M384.714,42.515 C373.221,42.515 363.869,33.164 363.869,21.669 C363.869,10.175 373.221,0.824 384.714,0.824 C396.208,0.824 405.56,10.175 405.56,21.669 C405.56,33.164 396.208,42.515 384.714,42.515 L384.714,42.515 Z M384.714,4.031 C374.989,4.031 367.076,11.944 367.076,21.669 C367.076,31.395 374.989,39.308 384.714,39.308 C394.44,39.308 402.353,31.395 402.353,21.669 C402.353,11.944 394.44,4.031 384.714,4.031 L384.714,4.031 Z" id="Fill-3" sketch:type="MSShapeGroup"></path>
+            </g>
+          </g>
+        </svg>
+        <svg id="line_top_right" class="background__line line--top-right" height="371" width="214" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214 371">
+          <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M 158.5 -185.43 L 56.41 -185.43 C 49.64 -185.43 44.12 -179.92 44.12 -173.14 L 44.12 -172.04 C 44.12 -165.26 49.64 -159.75 56.41 -159.75 L 93.83 -159.75 C 98.84 -159.75 102.92 -155.67 102.92 -150.66 L 102.92 -140.92 C 102.92 -135.91 98.84 -131.83 93.83 -131.83 L -0.24 -131.83 C -7.02 -131.83 -12.54 -126.32 -12.54 -119.54 L -12.54 -95.97 C -12.54 -89.19 -7.02 -83.68 -0.24 -83.68 L 48.93 -83.68 C 53.94 -83.68 58.02 -79.6 58.02 -74.59 L 58.02 -50 C 58.02 -43.23 63.29 -37.71 69.78 -37.71 C 74.49 -37.71 78.33 -33.63 78.33 -28.62 L 78.33 22.42 C 78.33 29.2 83.84 34.71 90.62 34.71 L 141.93 34.71 C 146.94 34.71 151.02 38.79 151.02 43.8 L 151.02 88.39 C 151.02 93.4 146.94 97.48 141.93 97.48 L 134.45 97.48 C 127.67 97.48 122.16 102.99 122.16 109.77 L 122.16 140.28 C 122.16 147.06 127.67 152.57 134.45 152.57 L 200.76 152.57 C 205.77 152.57 209.84 156.65 209.84 161.66 L 209.84 216.18 C 209.84 221.19 205.77 225.26 200.76 225.26 L 31.88 225.26 C 25.1 225.26 19.58 230.78 19.58 237.56 L 19.58 331.63 L 22.79 331.63 L 22.79 237.56 C 22.79 232.55 26.87 228.47 31.88 228.47 L 200.76 228.47 C 207.53 228.47 213.05 222.96 213.05 216.18 L 213.05 161.66 C 213.05 154.88 207.53 149.36 200.76 149.36 L 134.45 149.36 C 129.44 149.36 125.37 145.29 125.37 140.28 L 125.37 109.77 C 125.37 104.76 129.44 100.69 134.45 100.69 L 141.93 100.69 C 148.71 100.69 154.23 95.17 154.23 88.39 L 154.23 43.8 C 154.23 37.02 148.71 31.51 141.93 31.51 L 90.62 31.51 C 85.61 31.51 81.54 27.43 81.54 22.42 L 81.54 -28.62 C 81.54 -35.4 76.26 -40.92 69.78 -40.92 C 65.06 -40.92 61.23 -44.99 61.23 -50 L 61.23 -74.59 C 61.23 -81.37 55.71 -86.88 48.93 -86.88 L -0.24 -86.88 C -5.25 -86.88 -9.33 -90.96 -9.33 -95.97 L -9.33 -119.54 C -9.33 -124.55 -5.25 -128.63 -0.24 -128.63 L 93.83 -128.63 C 100.61 -128.63 106.12 -134.14 106.12 -140.92 L 106.12 -150.66 C 106.12 -157.44 100.61 -162.95 93.83 -162.95 L 56.41 -162.95 C 51.4 -162.95 47.33 -167.03 47.33 -172.04 L 47.33 -173.14 C 47.33 -178.15 51.4 -182.23 56.41 -182.23 L 158.5 -182.23 C 163.51 -182.23 167.59 -178.15 167.59 -173.14 L 167.59 -79.16 C 167.59 -72.38 172.98 -66.86 179.62 -66.86 L 190.04 -66.86 L 190.04 -70.07 L 179.62 -70.07 C 174.75 -70.07 170.79 -74.15 170.79 -79.16 L 170.79 -173.14 C 170.79 -179.92 165.28 -185.43 158.5 -185.43" />
+          <path fill="none" stroke="#8cd5c9" stroke-width="4px" fill-rule="evenodd" d="M 31.18 350.1 C 31.18 355.62 26.71 360.09 21.19 360.09 C 15.67 360.09 11.19 355.62 11.19 350.1 C 11.19 344.58 15.67 340.1 21.19 340.1 C 26.71 340.1 31.18 344.58 31.18 350.1" />
+          <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M 21.19 370.94 C 9.69 370.94 0.34 361.59 0.34 350.1 C 0.34 338.6 9.69 329.25 21.19 329.25 C 32.68 329.25 42.03 338.6 42.03 350.1 C 42.03 361.59 32.68 370.94 21.19 370.94 L 21.19 370.94 Z M 21.19 332.46 C 11.46 332.46 3.55 340.37 3.55 350.1 C 3.55 359.82 11.46 367.74 21.19 367.74 C 30.91 367.74 38.83 359.82 38.83 350.1 C 38.83 340.37 30.91 332.46 21.19 332.46 L 21.19 332.46 Z M 21.19 332.46" />
+        </svg>
+        <svg id="line_bottom_left" class="background__line line--bottom-left" height="251" width="315" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 251">
+          <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M 125.2 0.84 L 68.71 0.84 C 61.93 0.84 56.41 6.35 56.41 13.13 L 56.41 39.32 C 56.41 44.33 52.34 48.41 47.33 48.41 L 0.29 48.41 L 0.29 51.61 L 47.33 51.61 C 54.1 51.61 59.62 46.1 59.62 39.32 L 59.62 13.13 C 59.62 8.12 63.7 4.04 68.71 4.04 L 125.2 4.04 C 130.21 4.04 134.29 8.12 134.29 13.13 L 134.29 72.26 C 134.29 77.27 130.21 81.34 125.2 81.34 L 97.57 81.34 C 90.79 81.34 85.28 86.86 85.28 93.64 L 85.28 121.1 C 85.28 127.88 90.79 133.39 97.57 133.39 L 124.3 133.39 C 129.31 133.39 133.38 137.47 133.38 142.48 L 133.38 209.83 C 133.38 214.84 129.31 218.91 124.3 218.91 L 63.36 218.91 C 56.58 218.91 51.07 224.43 51.07 231.21 L 51.07 238.69 C 51.07 245.47 56.58 250.98 63.36 250.98 L 213.02 250.98 C 219.8 250.98 225.32 245.47 225.32 238.69 L 225.32 210.9 C 225.32 205.89 229.39 201.81 234.4 201.81 L 273.56 201.81 L 273.56 198.6 L 234.4 198.6 C 227.62 198.6 222.11 204.12 222.11 210.9 L 222.11 238.69 C 222.11 243.7 218.03 247.77 213.02 247.77 L 63.36 247.77 C 58.35 247.77 54.28 243.7 54.28 238.69 L 54.28 231.21 C 54.28 226.2 58.35 222.12 63.36 222.12 L 124.3 222.12 C 131.07 222.12 136.59 216.6 136.59 209.83 L 136.59 142.48 C 136.59 135.7 131.07 130.18 124.3 130.18 L 97.57 130.18 C 92.56 130.18 88.48 126.11 88.48 121.1 L 88.48 93.64 C 88.48 88.63 92.56 84.55 97.57 84.55 L 125.2 84.55 C 131.98 84.55 137.5 79.04 137.5 72.26 L 137.5 13.13 C 137.5 6.35 131.98 0.84 125.2 0.84" />
+          <path fill="none" stroke="#8cd5c9" stroke-width="4px" fill-rule="evenodd" d="M 303.71 199.14 C 303.71 204.66 299.23 209.13 293.71 209.13 C 288.19 209.13 283.72 204.66 283.72 199.14 C 283.72 193.62 288.19 189.14 293.71 189.14 C 299.23 189.14 303.71 193.62 303.71 199.14" />
+          <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M 293.71 219.98 C 282.22 219.98 272.87 210.63 272.87 199.14 C 272.87 187.64 282.22 178.29 293.71 178.29 C 305.21 178.29 314.56 187.64 314.56 199.14 C 314.56 210.63 305.21 219.98 293.71 219.98 L 293.71 219.98 Z M 293.71 181.5 C 283.99 181.5 276.08 189.41 276.08 199.14 C 276.08 208.86 283.99 216.77 293.71 216.77 C 303.44 216.77 311.35 208.86 311.35 199.14 C 311.35 189.41 303.44 181.5 293.71 181.5 L 293.71 181.5 Z M 293.71 181.5" />
+        </svg>
+        <svg id="line_bottom_right" class="background__line line--bottom-right" height="260" width="100" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 260">
+          <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M 22.61 41.86 L 19.4 41.86 L 19.4 94.67 C 19.4 101.45 24.92 106.97 31.7 106.97 L 87.29 106.97 C 92.3 106.97 96.37 111.04 96.37 116.05 L 96.37 218.9 C 96.37 223.91 92.3 227.99 87.29 227.99 L 41.32 227.99 C 34.54 227.99 29.03 233.51 29.03 240.28 L 29.03 263.17 C 29.03 268.18 25.29 272.26 20.69 272.26 C 14.33 272.26 9.15 277.77 9.15 284.55 L 9.15 340.92 C 9.15 347.7 14.67 353.21 21.45 353.21 L 59.82 353.21 C 64.83 353.21 68.91 357.29 68.91 362.3 L 68.91 380.47 L 72.11 380.47 L 72.11 362.3 C 72.11 355.52 66.6 350 59.82 350 L 21.45 350 C 16.44 350 12.36 345.93 12.36 340.92 L 12.36 284.55 C 12.36 279.54 16.1 275.47 20.69 275.47 C 27.06 275.47 32.23 269.95 32.23 263.17 L 32.23 240.28 C 32.23 235.27 36.31 231.2 41.32 231.2 L 87.29 231.2 C 94.06 231.2 99.58 225.68 99.58 218.9 L 99.58 116.05 C 99.58 109.27 94.06 103.76 87.29 103.76 L 31.7 103.76 C 26.69 103.76 22.61 99.68 22.61 94.67 L 22.61 41.86" />
+          <path fill="none" stroke="#8cd5c9" stroke-width="4px" fill-rule="evenodd" d="M 31 20.91 C 31 26.43 26.53 30.91 21.01 30.91 C 15.49 30.91 11.01 26.43 11.01 20.91 C 11.01 15.39 15.49 10.92 21.01 10.92 C 26.53 10.92 31 15.39 31 20.91" />
+          <path fill="none" stroke="#8cd5c9" stroke-width="2px" fill-rule="evenodd" d="M 21.01 41.76 C 9.51 41.76 0.16 32.41 0.16 20.91 C 0.16 9.42 9.51 0.07 21.01 0.07 C 32.5 0.07 41.85 9.42 41.85 20.91 C 41.85 32.41 32.5 41.76 21.01 41.76 L 21.01 41.76 Z M 21.01 3.27 C 11.28 3.27 3.37 11.19 3.37 20.91 C 3.37 30.64 11.28 38.55 21.01 38.55 C 30.73 38.55 38.65 30.64 38.65 20.91 C 38.65 11.19 30.73 3.27 21.01 3.27 L 21.01 3.27 Z M 21.01 3.27" />
+        </svg>
+      </div>
+      <a class="scroll__down js-nav-trigger" href="#program">
+        <img src="img/arrow.svg" alt="" />
+      </a>
+    </section>
+    <section class="pages__section pages--program clearfix" id="program">
+      <span class="program__background">Programa</span>
+      <ul class="program__time">
+        <li>10:00</li>
+        <li>10:15</li>
+        <li>11:00</li>
+        <li>11:15</li>
+        <li>12:00</li>
+        <li>12:45</li>
+        <li>13:45</li>
+        <li>14:30</li>
+        <li>15:15</li>
+        <li>16:00</li>
+        <li>16:15</li>
+        <li>17:00</li>
+      </ul>
+      <ul class="program__points">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <span class="program__time-line"></span>
+      <ul class="program__topics">
+        <li><span class="time-for-mobile">10:00</span>NFQ Offline day’15 atidarymas <small>Vytautas</small></li>
+        <li><span class="time-for-mobile">10:15</span>NFQ - programinės įrangos amatininkų kalvė <small>Mažvydas Skuodas</small></li>
+        <li><span class="time-for-mobile">11:00</span>Kavos pertrauka</li>
+        <li><span class="time-for-mobile">11:15</span>Designing and Developing for performance <small>Audrius Bugas</small></li>
+        <li><span class="time-for-mobile">12:00</span>Omega veža <small>Gitana Bagarauskienė</small></li>
+        <li><span class="time-for-mobile">12:45</span>Pietūs <small>Burgers time!</small></li>
+        <li><span class="time-for-mobile">13:45</span>Aš 2.0 arba ką išmokau iš amerikiečių <small>Darius Ašeriškis</small></li>
+        <li><span class="time-for-mobile">14:30</span>Kodėl aš skaitau pranešimus? <small>Sergej Kurakin</small></li>
+        <li><span class="time-for-mobile">15:15</span>Vienas už visus, ir visi už vieną! <small>Audrys Kažukauskas</small></li>
+        <li><span class="time-for-mobile">16:00</span>Alaus pertrauka</li>
+        <li><span class="time-for-mobile">16:15</span>Klausk direktoriaus <small>Paulius Insoda</small></li>
+        <li><span class="time-for-mobile">17:00</span>Uždarymas</li>
+      </ul>
+    </section>
+    <section class="pages__section pages--speakers" id="speakers">
+      <span class="speakers__background">Pranešėjai</span>
+      <div class="speakers-list clearfix">
+        <div class="speaker clearfix">
+          <img src="img/mazvydas_skuodas.png" alt="" />
+          <div class="info">
+            <span class="title">MAŽVYDAS SKUODAS</span>
+            <span class="position">CTO of Projects Department</span>
+          </div>
+          <span class="speaker__trigger modal-trigger" data-modal="mazvydas"><img src="img/plus.svg" alt="" /></span>
+        </div>
+        <div class="speaker clearfix">
+          <img src="img/darius_aseriskis.png" alt="" />
+          <div class="info">
+            <span class="title">DARIUS  AŠERIŠKIS</span>
+            <span class="position">Team Lead Development</span>
+          </div>
+          <span class="speaker__trigger modal-trigger" data-modal="darius"><img src="img/plus.svg" alt="" /></span>
+        </div>
+        <div class="speaker clearfix">
+          <img src="img/audrys_kazukauskas.png" alt="" />
+          <div class="info">
+            <span class="title">AUDRYS  KAŽUKAUSKAS</span>
+            <span class="position">CTO</span>
+          </div>
+          <span class="speaker__trigger modal-trigger" data-modal="audrys"><img src="img/plus.svg" alt="" /></span>
+        </div>
+        <div class="speaker clearfix">
+          <img src="img/audrius_bugas.png" alt="" />
+          <div class="info">
+            <span class="title">AUDRIUS BUGAS</span>
+            <span class="position">Software Architect</span>
+          </div>
+          <span class="speaker__trigger modal-trigger" data-modal="audrius"><img src="img/plus.svg" alt="" /></span>
+        </div>
+        <div class="speaker clearfix">
+          <img src="img/sergej.png" alt="" />
+          <div class="info">
+            <span class="title">SERGEJ  KURAKIN</span>
+            <span class="position">Lead Developer</span>
+          </div>
+          <span class="speaker__trigger modal-trigger" data-modal="sergej"><img src="img/plus.svg" alt="" /></span>
+        </div>
+        <div class="speaker clearfix">
+          <img src="img/gitana.png" alt="" />
+          <div class="info">
+            <span class="title">GITANA  BAGARAUSKIENĖ</span>
+            <span class="position">Project Manager</span>
+          </div>
+          <span class="speaker__trigger modal-trigger modal-trigger" data-modal="gitana"><img src="img/plus.svg" alt="" /></span>
+        </div>
+      </div>
+
+      <div class="modal__window" id="audrys">
+        <h1 class="modal-header">Vienas už visus ir visi už vieną!</h1>
+        <p class="modal-text">
+          IT projektas. Grupė specialistų jam įgyvendinti. Jų tarpe ir tu. Kaip tapti vieninga komanda, efektyviai siekiančia bendro tikslo? Kaip tau rasti savo vietą, suderinti asmeninius ir projekto interesus, ir augti kartu? Žinau receptą, kuris veikia.
+        </p>
+        <div class="modal-speaker clearfix">
+          <img src="img/audrys_kazukauskas.png" alt="" />
+          <div class="speaker-cont">
+            <span class="name">Audrys Kažukauskas</span>
+            <span class="position">CTO</span>
+          </div>
+        </div>
+        <button class="close-modal" type="button" name="button"><img src="img/close_modal.svg" alt="" /></button>
+      </div>
+
+      <div class="modal__window" id="gitana">
+        <h1 class="modal-header">Omega veža!</h1>
+        <p class="modal-text">
+          Visiems, kas dirba prie projekto yra svarbu pajausti tą rezultato malonumą, kad tavo kūrinį kažkas aktyviai naudoja, ir dar maloniau, kai tas daiktas „makes world a better place to live“. Tai be chalendžų, kuriuos turėjom, norisi parodyti kaip kūrinys naudojamas, ir kaip jis pristatomas viešai. Plius, kaip naudotojas keičia savo įpročius mūsų pagalba.
+        </p>
+        <div class="modal-speaker clearfix">
+          <img src="img/gitana.png" alt="" />
+          <div class="speaker-cont">
+            <span class="name">Gitana Bagarauskienė</span>
+            <span class="position">Project Manager</span>
+          </div>
+        </div>
+        <button class="close-modal" type="button" name="button"><img src="img/close_modal.svg" alt="" /></button>
+      </div>
+
+      <div class="modal__window" id="mazvydas">
+        <h1 class="modal-header">NFQ - programinės įrangos amatininkų kalvė</h1>
+        <p class="modal-text">
+          Istorija, kaip iš paprasto "geekinio developerio" tampama tuo amatininku, kurių visiems reikia (verslui) ir kuriais dauguma nori tapti (programeriai). Tuo pačiu bus kalbama apie darbo kultūrą, ir tarpusavio pagarbą tarp programuotojų, projektų vadovų ir užsakovų. Visa tema, turbūt, ir apibrėžia dėl ko programuotojai nori būti programuotojais.
+        </p>
+        <div class="modal-speaker clearfix">
+          <img src="img/mazvydas_skuodas.png" alt="" />
+          <div class="speaker-cont">
+            <span class="name">Mažvydas Skuodas</span>
+            <span class="position">CTO of Projects Department</span>
+          </div>
+        </div>
+        <button class="close-modal" type="button" name="button"><img src="img/close_modal.svg" alt="" /></button>
+      </div>
+
+      <div class="modal__window" id="audrius">
+        <h1 class="modal-header">Designing and Developing for performance</h1>
+        <p class="modal-text">
+          Per savo karjerą daugiausiai dirbau su projektais, kur greitaveika yra vienas esminių raktų į sėkmę. Teko susipažinti su visais greitaveikos vertikalaus pjūvio komponentais: application behavior, rendering speed, javascript performance, backend application architecture, database schema and query design, servers architecture. Pranešime pasidalinsiu patirtimi ir įžvalgomis į ką yra svarbu atkreipti dėmesį siekiant puikaus rezultato.
+        </p>
+        <div class="modal-speaker clearfix">
+          <img src="img/audrius_bugas.png" alt="" />
+          <div class="speaker-cont">
+            <span class="name">Audrius Bugas</span>
+            <span class="position">Software Architect</span>
+          </div>
+        </div>
+        <button class="close-modal" type="button" name="button"><img src="img/close_modal.svg" alt="" /></button>
+      </div>
+
+      <div class="modal__window" id="sergej">
+        <h1 class="modal-header">Kodėl aš skaitau pranešimus?</h1>
+        <p class="modal-text">
+          Draugai, kolegos, šeimos nariai manęs kartais klausia: “kodėl tu skaitai pranešimus per vartotojų grupių susirinkimus, konferencijas ar įmonės viduje?”. Būtent apie tai aš ir papasakosiu.
+        </p>
+        <div class="modal-speaker clearfix">
+          <img src="img/sergej.png" alt="" />
+          <div class="speaker-cont">
+            <span class="name">Sergej Kurakin</span>
+            <span class="position">Lead Developer</span>
+          </div>
+        </div>
+        <button class="close-modal" type="button" name="button"><img src="img/close_modal.svg" alt="" /></button>
+      </div>
+
+      <div class="modal__window" id="darius">
+        <h1 class="modal-header">Aš 2.0 arba ką išmokau iš amerikiečių</h1>
+        <p class="modal-text">
+          Trumpas pasakojimas paremtas asmenine patirtimi, surinkta per keliarius metus dirbant Amerikos kapitalo kompanijose ir užimant komandos vadovo pareigas. Pateikiamos pagrindinės apibendrintos pamokos, leidžiančios sėkmingai dirbti bet kurioje kompanijoje.
+        </p>
+        <div class="modal-speaker clearfix">
+          <img src="img/darius_aseriskis.png" alt="" />
+          <div class="speaker-cont">
+            <span class="name">Darius Ašeriškis</span>
+            <span class="position">Team Lead Development</span>
+          </div>
+        </div>
+        <button class="close-modal" type="button" name="button"><img src="img/close_modal.svg" alt="" /></button>
+      </div>
+
+    </section>
+    <section class="pages__section pages--workshops" id="workshops">
+      <div class="workshops__title">WORKSHOP’AI</div>
+      <span class="workshops__separator"><img src="img/workshops-arrow.svg" alt="" /></span>
+      <div class="workshops__list clearfix">
+        <div class="left">
+          <h1>PASTA: REGIONAI, TIPAI, GAMYBOS TECHNOLOGIJOS</h1>
+          <div class="links clearfix">
+            <a class="read-more" href="https://www.eventbrite.com/e/kurybines-dirbtuves-pasta-regionai-tipai-gamybos-technologijos-tickets-18362623100" target="_blank">Plačiau</a>
+          </div>
+          <div class="workshop__speaker clearfix">
+            <div class="speaker__container">
+              <img src="img/paulius_stoskus.png" alt="" />
+              <span class="speaker__name">Paulius Stoškus</span>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <h1>ALAUS MITŲ GRIOVĖJAI</h1>
+          <div class="links clearfix">
+            <a class="read-more" href="https://www.eventbrite.com/e/kurybines-dirbtuves-alaus-mitu-griovejai-tickets-18362553893" target="_blank">Plačiau</a>
+          </div>
+          <div class="workshop__speaker clearfix">
+            <div class="speaker__container">
+              <img src="img/tomas-kvietkauskas.png" alt="" />
+              <span class="speaker__name">Tomas Kvietkauskas</span>
+            </div>
+            <div class="speaker__container bottom">
+              <img src="img/andrius_stanevicius.png" alt="" />
+              <span class="speaker__name">Andrius Stanevičius</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="pages__section pages--game" id="game">
+      <div class="game__background clearfix">
+        <div class="bg__left"></div>
+        <div class="bg__right"></div>
+      </div>
+      <div class="game__content">
+        <h1 class="game__title">Žaidimas</h1>
+        <p class="game__description">
+          Ką reikės daryti? Konferencijos metu žaidimo svetainėje bus pateikiami klausimai. Atsakyk į daugiausiai klausimų ir laimėk mobilų telefoną. Kokį? Galėsi pasirinkti pats - Apple iPhone 6 arba Samsung Galaxy S6 edge+. Pirma ką tau reikia padaryti - užsiregistruoti.
+        </p>
+        <a href="http://game.nfq.lt" class="game__register" target="_blank">REGISTRUOTIS Į ŽAIDIMĄ</a>
+        <span class="game__reminder">Registruotis galima iki <strong>Rugsėjo 3d. 18val.</strong></span>
+        <div class="game__phones-container">
+          <span class="phone__tick phone__tick-left"></span>
+          <span class="phone__tick phone__tick-right"></span>
+          <img class="game__phones" src="img/phone.png" alt="" />
+          <img class="game__line game__line-left" src="img/game_line_left.svg" alt="" />
+          <img class="game__line game__line-right" src="img/game_line_right.svg" alt="" />
+          <span class="game__phone-title game__phone-title-left">Apple iPhone 6</span>
+          <span class="game__phone-title game__phone-title-right">Samsung Galaxy S6 edge+</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script> -->
+  <script src="js/vendor/jquery-1.11.2.min.js"></script>
+
+  <script src="js/vendor/velocity.min.js"></script>
+
+  <script src="js/vendor/vivus.min.js"></script>
+
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <!-- <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+  </script> -->
+</body>
+</html>
