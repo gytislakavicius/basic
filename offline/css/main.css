@@ -948,6 +948,10 @@ body {
       min-height: 665px;
   }
 
+  .pages--speakers {
+    min-height: 930px;
+  }
+
   .modal__window {
     padding: 100px 60px 0 160px !important;
   }
