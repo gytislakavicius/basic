@@ -23,7 +23,7 @@ class ChangePasswordFormType extends AbstractType
                 ]
             )
             ->add(
-                'IŠSAUGOTI SLAPTAŽODĮ',
+                'išsaugoti slaptažodį',
                 'submit'
             )
         ;
