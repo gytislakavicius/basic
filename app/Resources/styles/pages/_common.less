@@ -72,4 +72,103 @@ body.common-page {
     margin: 0 auto;
     margin-bottom: 71px;
   }
+  
+  .idle-bg, .idle-robot {
+    position: absolute;;
+  }
+  
+  .idle-bg {
+    left: 0;
+    top: 40px;
+  }
+  
+  .idle-robot {
+    right: 0;
+    top: 100px;
+  }
+
+  .idle-title {
+    padding-top: 370px;
+    width: 192px;
+    height: 76px;
+    color: #343534;
+    font-family: @primary-font-family;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 38px;
+  }
+
+  .idle-countdown {
+    padding-top: 120px;
+
+    > * {
+      float: left;
+      margin-right: 15px;
+    }
+
+    .count {
+      width: 69px;
+      height: 90px;
+      color: #343534;
+      font-family: @primary-font-family;
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 91px;
+    }
+
+    .label {
+      width: 60px;
+      height: 19px;
+      color: #979797;
+      font-family: @primary-font-family;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 19px;
+      text-transform: uppercase;
+    }
+
+    .separator {
+      width: 13px;
+      height: 59px;
+      color: #979797;
+      font-family: @primary-font-family;
+      font-size: 47px;
+      font-weight: 400;
+      line-height: 90px;
+    }
+  }
+
+  .success-button {
+    display: block;
+    text-align: center;
+    width: 100%;
+    line-height: 70px;
+    height: 70px;
+    background-color: #ff6b00;
+    color: white;
+    font-family: "Source Sans Pro";
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  
+  .password-form {
+    position: relative;
+    
+    .password-toggle-btn {
+      padding: 23px;
+      position: absolute;
+      display: block;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      width: 64px;
+      height: 64px;
+      cursor: pointer;
+    }
+
+    #show_password_ico {
+      margin-top: 4px;
+    }
+  }
 }

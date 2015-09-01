@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ChangePasswordFormType extends AbstractType
+class ResettingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,10 +22,6 @@ class ChangePasswordFormType extends AbstractType
                     'translation_domain' => 'FOSUserBundle',
                 ]
             )
-            ->add(
-                'išsaugoti slaptažodį',
-                'submit'
-            )
         ;
     }
 
@@ -33,12 +29,12 @@ class ChangePasswordFormType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'FOS\UserBundle\Form\Model\ChangePassword',
-            'intention'  => 'change_password',
+            'intention'  => 'reset_password',
         ));
     }
 
     public function getName()
     {
-        return 'fos_user_change_password';
+        return 'fos_user_resetting';
     }
 }

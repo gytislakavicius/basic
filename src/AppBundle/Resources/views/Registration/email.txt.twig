@@ -1,12 +1,65 @@
 {% block subject %}
-    {% autoescape false %}
-        Labas, {{ user.username }}!
-    {% endautoescape %}
+{% autoescape false %}
+    NFQ Offline Day'15!
+{% endautoescape %}
 {% endblock %}
-{% block body_text %}{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+    Ouujee,
+
+    iki akaunto sukūrimo tau liko vienas žingsnis.
+    Sukūriau formą, kurioje įvedęs slaptažodį, būsi pasiruošęs žaidimui! Pirmyn!
+    {{ confirmationUrl }}
+
+    Jeeee,
+    Robots
+
+    --
+    NFQ Offline Day'15 game team http://game.nfq.lt
+{% endautoescape %}
+{% endblock %}
+
 {% block body_html %}
-    Labas, {{ user.username }}!<br><br>
-    Užsiregistravai į žaidimą :O<br><br>
-    Patvirtinimo nuoroda: {{ confirmationUrl }}<br><br>
-    Nuoširdžiai, NFQ Basic game komanda.
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body style="padding:40px;background-color:#f9f9f9;font-family:Arial;font-size:16px;line-height:24px;color:#343534;">
+    <table style="min-width:79px;margin-right:55px;margin-bottom:51px;" align="left">
+        <tr>
+            <td><img src="http://game.nfq.lt/{{ asset('images/logo.svg') }}" alt=""></td>
+        </tr>
+    </table>
+    <table style="min-width:310px;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;">
+        <tr>
+            <td style="padding:45px 36px;">
+                <h1 style="color:#fc6b0e;font-size:24px;line-height:28px;">Ouujee,</h1>
+
+                <p>
+                    iki akaunto sukūrimo tau liko vienas žingsnis.
+                    Sukūriau formą, kurioje įvedęs slaptažodį, būsi pasiruošęs žaidimui!
+                </p>
+
+                <p>
+                    Pirmyn!<br>
+                    <a style="color:#fc6b0e;-ms-word-break: break-all;word-break: break-all;word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;" href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>
+                </p>
+
+                Jeeee,<br>
+                Robots
+
+                <hr style="background:gainsboro;border:0;height:1px;margin-top:76px;">
+                <p style="font-size:12px;">
+                    NFQ Offline Day'15 game <br>
+                    <a style="color:#fc6b0e;" href="http://game.nfq.lt">http://game.nfq.lt</a>
+                </p>
+                <br>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
 {% endblock %}
+

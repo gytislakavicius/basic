@@ -15,7 +15,7 @@ class UserAnswer
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", cascade={"delete"})
+     * @ORM\ManyToOne(targetEntity="User", cascade={"remove"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      * @ORM\Id
      */
@@ -24,7 +24,7 @@ class UserAnswer
     /**
      * @var Question
      *
-     * @ORM\ManyToOne(targetEntity="Question", cascade={"delete"})
+     * @ORM\ManyToOne(targetEntity="Question", cascade={"remove"})
      * @ORM\JoinColumn(name="question", referencedColumnName="id")
      * @ORM\Id
      */
@@ -33,7 +33,7 @@ class UserAnswer
     /**
      * @var Team
      *
-     * @ORM\ManyToOne(targetEntity="Team", cascade={"delete"})
+     * @ORM\ManyToOne(targetEntity="Team", cascade={"remove"})
      * @ORM\JoinColumn(name="team", referencedColumnName="id")
      */
     private $team;
@@ -55,7 +55,7 @@ class UserAnswer
     /**
      * @var \DateTime $answered
      *
-     * @ORM\Column(name="answered", type="date")
+     * @ORM\Column(name="answered", type="datetime")
      */
     private $answered;
 

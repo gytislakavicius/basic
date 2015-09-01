@@ -137,10 +137,10 @@ class Api
      * @throws EntityNotFoundException
      * @throws AccessDeniedException
      */
-    public function setAnswer(User $user, $questionId, $answer)
+    public function setAnswer($user, $questionId, $answer)
     {
         $question = $this->em->getRepository('AppBundle:Question')->find($questionId);
-        if (empty($question)) {
+        if (empty($question) || empty($user) || empty($user->getTeam())) {
             throw new EntityNotFoundException;
         }
 
@@ -154,14 +154,37 @@ class Api
                 $userAnswer = new UserAnswer();
                 $userAnswer->setUser($user);
                 $userAnswer->setQuestion($question);
+                $userAnswer->setTeam($user->getTeam());
             }
 
             $userAnswer->setAnswer($answer);
+            $userAnswer->setCorrect($this->isAnswerCorrect($question, $answer));
+            $userAnswer->setAnswered(new \DateTime());
 
             $this->em->persist($userAnswer);
             $this->em->flush();
         } else {
             throw new AccessDeniedException;
         }
+    }
+
+    /**
+     * @param Question $question
+     * @param string   $answer
+     * @return bool
+     */
+    private function isAnswerCorrect(Question $question, $answer)
+    {
+        $correct = false;
+
+        $correctAnswer = $this->em->getRepository('AppBundle:Answer')->findOneBy(
+            ['question' => $question->getId(), 'correct' => true]
+        );
+
+        if ($correctAnswer->getId() == $answer || strtolower($correctAnswer->getText()) == strtolower($answer)) {
+            $correct = true;
+        }
+
+        return $correct;
     }
 }

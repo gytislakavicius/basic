@@ -7,13 +7,13 @@
 
 {% block body %}
     <section class="tablet-container content" ng-controller="RegisterCtrl as register" ng-submit="register.submit($event)" method="POST">
-            <a href="" class="logo">
+            <a href="/" class="logo">
                 <img src="{{ asset('images/logo_large.svg') }}" alt="">
             </a>
 
             <legend>Įvesk savo vardo pirmą raidę ir pavardę. Į tavo @nfq.lt el. paštą  atsiųsime nuorodą su slaptažodžio sukūrimo forma.</legend>
             {% if error is defined %}
-                <div class="errer-msg"><img src="{{ asset('images/error.svg') }}" alt="">{{ error }}</div>
+                <div class="error-msg"><img src="{{ asset('images/error.svg') }}" alt="">{{ error }}</div>
             {% endif %}
 
             <div class="common-form{% if error is defined %} has-error{% endif %}">

@@ -65,7 +65,7 @@ services:
         class: AppBundle\Service\Users
         arguments:
             - @fos_user.user_manager.default
-            - @fos_user.mailer.default
+            - @fos_user.mailer.twig_swift
             - %kernel.root_dir%
             - %url%
 
@@ -90,6 +90,11 @@ services:
         class: AppBundle\Form\ChangePasswordFormType
         tags:
             - { name: form.type, alias: fos_user_change_password }
+
+    fos_user.resetting.form.type:
+        class: AppBundle\Form\ResettingFormType
+        tags:
+            - { name: form.type, alias: fos_user_resetting }
 
     basic.listener.force_pass_change:
         class: AppBundle\EventListener\ForcePassChangeListener

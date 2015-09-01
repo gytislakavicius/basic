@@ -3,7 +3,7 @@
 namespace AppBundle\Service;
 
 use FOS\UserBundle\Doctrine\UserManager;
-use FOS\UserBundle\Mailer\Mailer;
+use FOS\UserBundle\Mailer\MailerInterface;
 use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -15,7 +15,7 @@ class Users
     /** @var UserManager */
     protected $userManager;
 
-    /** @var Mailer */
+    /** @var MailerInterface */
     protected $mailer;
 
     /** @var string */
@@ -25,10 +25,10 @@ class Users
     protected $domain;
 
     /**
-     * @param UserManager $userManager
-     * @param Mailer      $mailer
+     * @param UserManager     $userManager
+     * @param MailerInterface $mailer
      */
-    public function __construct(UserManager $userManager, Mailer $mailer, $kernelDir, $domain)
+    public function __construct(UserManager $userManager, MailerInterface $mailer, $kernelDir, $domain)
     {
         $this->userManager = $userManager;
         $this->mailer      = $mailer;
@@ -57,9 +57,7 @@ class Users
             $userEntity->setEmail($user->username . '@nfq.lt');
 
             if ($user->username == 'murnieza') {
-                $userEntity->setEnabled(true);
                 $userEntity->setSuperAdmin(true);
-                $userEntity->setPlainPassword('admin');
             }
 // Uncomment following to download images
 //$photoUrl = 'https://people.nfq.lt/media/team/' . preg_replace('/^\/avatar\/30\/30\/([^.]*).*/', '$1', $user->photo->url) . '_190x190.jpg';
@@ -84,11 +82,11 @@ class Users
         $user = $this->userManager->findUserByUsername($username);
 
         if (empty($user)) {
-            throw new NotFoundHttpException(sprintf('Naudotojas "%s" neegzistuoja.', $username));
+            throw new NotFoundHttpException('Upps, tokio žmogaus neradom! Pasitikrink ar viską įvedei be klaidų.');
         } elseif ($user->isEnabled()) {
-            throw new AlreadySubmittedException(sprintf('Naudotojas "%s" jau dalyvauja.', $username));
+            throw new AlreadySubmittedException('Upps, atrodo kad tu jau dalyvauji.');
         } elseif ($user->getConfirmationToken() != null) {
-            throw new AlreadySubmittedException(sprintf('Naudotojui "%s" jau išsiųsta aktyvacijos nuoroda.', $username));
+            throw new AlreadySubmittedException('Pasitikrink pašto dėžutę! Tau jau buvo išsiųsta aktyvacijos nuoroda.');
         }
 
         $user->setConfirmationToken(sha1(uniqid(mt_rand(), true)));
