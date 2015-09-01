@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Question;
 use AppBundle\Entity\Team;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserAnswer;
@@ -30,10 +31,10 @@ class PointCalculationLogic
             $this->em->persist($singleUser);
         }
 
-//        foreach ($allTeams as $singleTeam) {
-//            $this->calculateTeamPoints($singleTeam);
-//            $this->em->persist($singleTeam);
-//        }
+        foreach ($allTeams as $singleTeam) {
+            $this->calculateTeamPoints($singleTeam);
+            $this->em->persist($singleTeam);
+        }
 
         $this->em->flush();
     }
@@ -68,16 +69,44 @@ class PointCalculationLogic
     {
         $points = 0;
 
-        $teamAnswers = $this->getTeamAnswers($team);
+        $questions = $this->getQuestions();
+        /** @var Question $question */
+        foreach ($questions as $question) {
+            $teamAnswersForQuestion = $this->getTeamAnswers($team, $question->getId());
 
+            $total = 0;
+            $correct = 0;
+
+            foreach ($teamAnswersForQuestion as $teamAnswerForQuestion) {
+                if ($teamAnswerForQuestion->isCorrect()) {
+                    $correct++;
+                }
+                $total++;
+            }
+
+            $points += $this->calculateQuestionPoints($correct, $total, $question->getDifficulty());
+        }
+
+        $team->setScore($points);
     }
 
     /**
-     * @param Team $team
+     * @param $team
+     * @param $questionId
      * @return array
      */
-    private function getTeamAnswers($team)
+    private function getTeamAnswers($team, $questionId)
     {
-        return $this->em->getRepository('AppBundle:UserAnswer')->findBy(['team' => $team->getId()]);
+        return $this->em->getRepository('AppBundle:UserAnswer')->findBy(['team' => $team->getId(), 'question' => $questionId]);
+    }
+
+    private function getQuestions()
+    {
+        return $this->em->getRepository('AppBundle:Question')->findAll();
+    }
+
+    private function calculateQuestionPoints($correct, $total, $difficulty)
+    {
+        return $difficulty * $correct / $total;
     }
 }
