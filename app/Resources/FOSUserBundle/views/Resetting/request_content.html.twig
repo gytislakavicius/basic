@@ -11,14 +11,14 @@
             <img src="{{ asset('images/logo_large.svg') }}" alt="">
         </a>
 
-        <legend>Įrašyk savo vartotojo varda (vpavarde formatu).</legend>
+        <legend>Įrašyk savo vartotojo vardą (vpavarde formatu).</legend>
             {% if invalid_username is defined %}
                 <div class="error-msg"><img src="{{ asset('images/error.svg') }}" alt="">Nieko nežinau apie tokį vartotoją.</div>
             {% endif %}
         <div class="common-form{% if invalid_username is defined %} has-error{% endif %}">
             <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
                 <input type="text" id="username" name="username" required="required" />
-                <button type="submit">SIŲSK!!1</button>
+                <button type="submit">SIŲSK!!!</button>
             </form>
         </div>
     </section>
