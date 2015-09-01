@@ -17,7 +17,7 @@
             {% endif %}
         <div class="common-form{% if invalid_username is defined %} has-error{% endif %}">
             <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-                <input type="text" id="username" name="username" required="required" />
+                <input type="text" id="username" name="username" required="required" placeholder="vpavarde" />
                 <button type="submit">SIŲSK!!!</button>
             </form>
         </div>
