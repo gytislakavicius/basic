@@ -140,7 +140,9 @@ class Api
     public function setAnswer($user, $questionId, $answer)
     {
         $question = $this->em->getRepository('AppBundle:Question')->find($questionId);
-        if (empty($question) || empty($user) || empty($user->getTeam())) {
+        $team = $user->getTeam();
+
+        if (empty($question) || empty($user) || empty($team)) {
             throw new EntityNotFoundException;
         }
 
