@@ -6,9 +6,13 @@
 @import 'pages/_login';
 @import 'pages/_common';
 
+// Partials
+@import 'partials/_menu';
+
 html,
 body {
     height: 100%;
+    margin-top: -12px;
 }
 
 @footer-height: 38px;
@@ -19,7 +23,6 @@ body {
     max-width: 410px;
     padding: 0 10px;
     margin: 0 auto;
-    margin-bottom: -@footer-height;
 
     &::after {
         content: '';
