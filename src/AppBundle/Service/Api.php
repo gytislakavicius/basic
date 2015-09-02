@@ -58,9 +58,8 @@ class Api
                 'caption'    => $question->getDescription(),
                 'type'       => $question->getType(),
                 'isActive'   => $question->isActive(),
-                'activeFrom' => $this->formatDate($question->getActiveFrom()),
-                'activeTo'   => $this->formatDate($question->getActiveTo()),
-                'timeLeft'   => $this->formatDateInterval($question->getTimeLeft()),
+                'activeFrom' => $question->getActiveFrom()->getTimestamp(),
+                'activeTo'   => $question->getActiveTo()->getTimestamp(),
             ];
         }
 
@@ -86,35 +85,6 @@ class Api
         }
 
         return $result;
-    }
-
-    /**
-     * @param \DateTime $dateTime
-     *
-     * @return array
-     */
-    public function formatDate(\DateTime $dateTime)
-    {
-        return [
-            'hour'        => $dateTime->format('H'),
-            'minute'      => $dateTime->format('i'),
-            'second'      => $dateTime->format('s'),
-            'millisecond' => 0,
-        ];
-    }
-    /**
-     * @param \DateInterval $dateInterval
-     *
-     * @return array
-     */
-    public function formatDateInterval(\DateInterval $dateInterval)
-    {
-        return [
-            'hour'        => $dateInterval->format('%h'),
-            'minute'      => $dateInterval->format('%i'),
-            'second'      => $dateInterval->format('%s'),
-            'millisecond' => 0,
-        ];
     }
 
     /**
