@@ -7,20 +7,24 @@
 
     <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
 
-    <h1>
-        List of questions
-    </h1>
+    <section class="container content">
+        {% include 'partials/menu.html.twig' %}
 
-    <ul>
-        {% for question in questions %}
-            <li>
-                {{ question.text }}<br>
-                {% if question.answered %}
-                    {{ question.answer }}
-                {% else %}
-                    NEATSAKINĖJAI
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+        <h1>
+            List of questions
+        </h1>
+
+        <ul>
+            {% for question in questions %}
+                <li>
+                    {{ question.text }}<br>
+                    {% if question.answered %}
+                        {{ question.answer }}
+                    {% else %}
+                        NEATSAKINĖJAI
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
