@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Answer;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserAnswer;
@@ -52,15 +53,38 @@ class Api
         $questions = $this->em->getRepository('AppBundle:Question')->findAll();
 
         foreach ($questions as $question) {
+            if ($question->isPubliclyAvailable()) {
+                $result[] = [
+                    'id'         => $question->getId(),
+                    'text'       => $question->getText(),
+                    'type'       => $question->getType(),
+                    'isActive'   => $question->isActive(),
+                    'activeFrom' => $question->getActiveFrom()->getTimestamp(),
+                    'activeTo'   => $question->getActiveTo()->getTimestamp(),
+                    'answers'    => $this->getAnswersForQuestion($question),
+                ];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param Question $question
+     *
+     * @return array
+     */
+    protected function getAnswersForQuestion(Question $question)
+    {
+        $result = [];
+
+        $answers = $this->em->getRepository('AppBundle:Answer')->findBy(['question' => $question->getId()]);
+
+        /** @var Answer $answer */
+        foreach ($answers as $answer) {
             $result[] = [
-                'id'         => $question->getId(),
-                'heading'    => $question->getText(),
-                'caption'    => $question->getDescription(),
-                'type'       => $question->getType(),
-                'isActive'   => $question->isActive(),
-                'activeFrom' => $this->formatDate($question->getActiveFrom()),
-                'activeTo'   => $this->formatDate($question->getActiveTo()),
-                'timeLeft'   => $this->formatDateInterval($question->getTimeLeft()),
+                'id' => $answer->getId(),
+                'text' => $answer->getText(),
             ];
         }
 
@@ -89,35 +113,6 @@ class Api
     }
 
     /**
-     * @param \DateTime $dateTime
-     *
-     * @return array
-     */
-    public function formatDate(\DateTime $dateTime)
-    {
-        return [
-            'hour'        => $dateTime->format('H'),
-            'minute'      => $dateTime->format('i'),
-            'second'      => $dateTime->format('s'),
-            'millisecond' => 0,
-        ];
-    }
-    /**
-     * @param \DateInterval $dateInterval
-     *
-     * @return array
-     */
-    public function formatDateInterval(\DateInterval $dateInterval)
-    {
-        return [
-            'hour'        => $dateInterval->format('%h'),
-            'minute'      => $dateInterval->format('%i'),
-            'second'      => $dateInterval->format('%s'),
-            'millisecond' => 0,
-        ];
-    }
-
-    /**
      * @param $name
      *
      * @return mixed
@@ -140,7 +135,9 @@ class Api
     public function setAnswer($user, $questionId, $answer)
     {
         $question = $this->em->getRepository('AppBundle:Question')->find($questionId);
-        if (empty($question) || empty($user) || empty($user->getTeam())) {
+        $team = $user->getTeam();
+
+        if (empty($question) || empty($user) || empty($team)) {
             throw new EntityNotFoundException;
         }
 

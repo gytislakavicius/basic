@@ -19,6 +19,10 @@ class ApiController extends Controller
      */
     public function gameAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         /** @var Api $apiService */
         $apiService = $this->get('basic.api');
 

@@ -19,4 +19,16 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig');
     }
+
+    /**
+     * @Route("/rules", name="rules")
+     */
+    public function rulesAction()
+    {
+        if (!$this->isGranted(['IS_AUTHENTICATED_FULLY'])) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        return $this->render('default/rules.html.twig');
+    }
 }
