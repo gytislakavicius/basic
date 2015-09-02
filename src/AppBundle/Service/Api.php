@@ -44,9 +44,11 @@ class Api
     }
 
     /**
+     * @param User $currentUser
+     *
      * @return array
      */
-    public function getQuestions()
+    public function getQuestions(User $currentUser = null)
     {
         $result = [];
 
@@ -67,6 +69,19 @@ class Api
                 $entry['answers'] = $this->getAnswersForQuestion($question);
             } else {
                 $entry['text']    = 'Dar nepaskelbtas';
+            }
+
+            if ($currentUser !== null) {
+                $answer = $this->em->getRepository('AppBundle:UserAnswer')->findOneBy([
+                    'question' => $question->getId(),
+                    'user'     => $currentUser->getId(),
+                ]);
+
+                if ($answer) {
+                    $entry['answered'] = true;
+                } else {
+                    $entry['answered'] = false;
+                }
             }
 
             $result[] = $entry;
