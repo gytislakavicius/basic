@@ -21,7 +21,12 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['app/Resources/scripts/angular.min.js', 'app/Resources/scripts/app.js'],
+                src: [
+                    'app/Resources/scripts/angular.min.js',
+                    'app/Resources/scripts/app/game.controller.js',
+                    'app/Resources/scripts/app/game.service.js',
+                    'app/Resources/scripts/app.js'
+                ],
                 dest: 'web/scripts/app.js'
             }
         },

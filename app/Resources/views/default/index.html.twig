@@ -2,87 +2,29 @@
 
 {% set appName = 'basic' %}
 {% set pageClass = 'common-page' %}
-{% set gameStarted = true %}
 
 {% block body %}
-    {% if not gameStarted %}
-        <script>
-            var end = new Date('2015-09-04T10:15:00'),
-                    _second = 1000,
-                    _minute = _second * 60,
-                    _hour = _minute * 60,
-                    timer;
+    <section class="container content" ng-controller="gameController as vm" ng-cloak>
+        {% include 'partials/menu.html.twig' %}
+        {% include 'partials/answer.prompt.html.twig' %}
 
-            function showRemaining() {
-                var now = new Date();
-                var distance = end - now;
-                if (distance < 0) {
-                    clearInterval(timer);
-                    return;
-                }
+        <img ng-hide="vm.dataLoaded" class="loading-spinner" src="{{ asset('images/loading-spin.svg') }}" alt="">
 
-                var hours = Math.floor(distance / _hour);
-                var minutes = Math.floor((distance % _hour) / _minute);
-                var seconds = Math.floor((distance % _minute) / _second);
+        <div class="question-container" id="question_{{ '{{ vm.activeQuestion.id }}' }}" ng-show="vm.dataLoaded">
+            <h1 class="question">{{ '{{ vm.activeQuestion.text }}' }}</h1>
+            <span class="question-time-left">
+                Iki klausimo pabaigos liko: <span class="time">30min. : 25s.</span>
+            </span>
 
-                seconds = (seconds < 10) ? '0' + seconds : seconds;
-                minutes = (minutes < 10) ? '0' + minutes : minutes;
-                hours = (hours < 10) ? '0' + hours : hours;
-
-                document.getElementById('hours').innerHTML = hours;
-                document.getElementById('minutes').innerHTML = minutes;
-                document.getElementById('seconds').innerHTML = seconds;
-            }
-
-            timer = setInterval(showRemaining, 1000);
-        </script>
-
-        <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
-        <section class="container content idle-screen">
-            <img class="idle-bg" src="{{ asset('images/idle_bg.svg') }}" alt="">
-            <h1 class="idle-title">
-                Iki žaidimo
-                pradžios liko
-            </h1>
-            <div class="idle-countdown clearfix">
-                <div class="hours">
-                    <div class="count" id="hours"></div>
-                    <span class="label">Valandos</span>
-                </div>
-                <span class="separator">:</span>
-                <div class="minutes">
-                    <div class="count" id="minutes"></div>
-                    <span class="label">Minutės</span>
-                </div>
-                <span class="separator">:</span>
-                <div class="seconds">
-                    <div class="count" id="seconds"></div>
-                    <span class="label">Sekundės</span>
-                </div>
-                <span id="idle-timer"></span>
-            </div>
-        </section>
-    {% else %}
-        <section class="container content" ng-controller="questionController as vm">
-            {% include 'partials/menu.html.twig' %}
-            {% include 'partials/answer.prompt.html.twig' %}
-
-            <div class="question-container">
-                <h1 class="question">{{ '{{ vm.question.title }}' }}</h1>
-                <span class="question-time-left">
-                    Iki klausimo pabaigos liko: <span class="time">30min. : 25s.</span>
-                </span>
-
-                <form ng-submit="vm.submitAnswer()" class="questions-form">
-                    <ul class="questions-list">
-                        <li ng-repeat="answer in vm.question.answers" ng-click="vm.selectAnswer(answer.id)">
-                            <input id="answer_{{ '{{ answer.id }}' }}" name="answer" type="radio">
-                            <label for="answer_{{ '{{ answer.id }}' }}">{{ '{{ answer.title }}' }}</label>
-                        </li>
-                    </ul>
-                    <button>Atsakyti</button>
-                </form>
-            </div>
-        </section>
-    {% endif %}
+            <form ng-submit="vm.submitAnswer()" class="questions-form">
+                <ul class="questions-list">
+                    <li ng-repeat="answer in vm.activeQuestion.answers" ng-class="{ selected: vm.isSelected(answer.id) }" ng-click="vm.selectAnswer(answer.id)">
+                        <input id="answer_{{ '{{ answer.id }}' }}" name="answer" type="radio">
+                        <label for="answer_{{ '{{ answer.id }}' }}">{{ '{{ answer.text }}' }}</label>
+                    </li>
+                </ul>
+                <button>Atsakyti</button>
+            </form>
+        </div>
+    </section>
 {% endblock %}

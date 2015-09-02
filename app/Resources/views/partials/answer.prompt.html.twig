@@ -1,3 +1,12 @@
 <div class="answer-prompt" ng-show="vm.answerSubmited">
-    {{ '{{ vm.answerData }}' }}
+    <div class="prompt-container">
+        <h2>
+            Ar tikrai renkatės
+            šį atsakymą?
+        </h2>
+        <div class="clearfix">
+            <button ng-click="vm.confirmAnswer(vm.activeQuestion.id, vm.selectedAnswer)">Taip</button>
+            <button class="btn-grey" ng-click="vm.submitCancel()">Ne</button>
+        </div>
+    </div>
 </div>
