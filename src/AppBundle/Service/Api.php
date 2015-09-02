@@ -8,6 +8,7 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\UserAnswer;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -131,6 +132,7 @@ class Api
      *
      * @throws EntityNotFoundException
      * @throws AccessDeniedException
+     * @throws AlreadySubmittedException
      */
     public function setAnswer($user, $questionId, $answer)
     {
@@ -147,13 +149,14 @@ class Api
                 ['user' => $user->getId(), 'question' => $questionId]
             );
 
-            if (empty($userAnswer)) {
-                $userAnswer = new UserAnswer();
-                $userAnswer->setUser($user);
-                $userAnswer->setQuestion($question);
-                $userAnswer->setTeam($user->getTeam());
+            if (!empty($userAnswer)) {
+                throw new AlreadySubmittedException;
             }
 
+            $userAnswer = new UserAnswer();
+            $userAnswer->setUser($user);
+            $userAnswer->setQuestion($question);
+            $userAnswer->setTeam($user->getTeam());
             $userAnswer->setAnswer($answer);
             $userAnswer->setCorrect($this->isAnswerCorrect($question, $answer));
             $userAnswer->setAnswered(new \DateTime());

@@ -6,6 +6,7 @@ use AppBundle\Service\Api;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -63,6 +64,7 @@ class ApiController extends Controller
      * success - if everything went fine
      * expired - if question is no longer active
      * not found - if question, user or team was not found
+     * already answered - if question was already answered
      *
      * @Route("/game/answer/{questionId}/{answer}", name="api.answer")
      *
@@ -77,8 +79,8 @@ class ApiController extends Controller
     {
         /** @var Api $apiService */
         $apiService = $this->get('basic.api');
+        $status = 'success';
 
-        $status = 'sucess';
         try {
             $apiService->setAnswer($this->getUser(), $questionId, $answer);
         } catch (\Exception $e) {
@@ -88,6 +90,9 @@ class ApiController extends Controller
                     break;
                 case $e instanceof AccessDeniedException:
                     $status = 'expired';
+                    break;
+                case $e instanceof AlreadySubmittedException:
+                    $status = 'already answered';
                     break;
                 default:
                     throw $e;

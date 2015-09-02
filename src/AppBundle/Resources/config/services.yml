@@ -69,6 +69,13 @@ services:
             - %kernel.root_dir%
             - %url%
 
+    basic.questions:
+        class: AppBundle\Service\Questions
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @basic.api
+
+
     basic.teams.name_generator:
         class: AppBundle\Teams\TeamNameGenerator
         calls:
