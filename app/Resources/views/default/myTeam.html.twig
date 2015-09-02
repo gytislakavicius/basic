@@ -17,7 +17,7 @@
             {% for member in teamMembers %}
                 <li>
                     <img src="{{ member.getPhotoUrl() }}">
-                    {{ member.getFullName() }} - {{ member.getScore() }}
+                    {{ member.getFullName() }} - {{ member.getScore()|number_format }}
                 </li>
             {% endfor %}
         </ul>
