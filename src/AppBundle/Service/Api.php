@@ -51,7 +51,7 @@ class Api
         $result = [];
 
         /** @var Question[] $questions */
-        $questions = $this->em->getRepository('AppBundle:Question')->findAll();
+        $questions = $this->em->getRepository('AppBundle:Question')->findBy([], ['activeFrom' => 'ASC']);
 
         foreach ($questions as $question) {
             $entry = [
