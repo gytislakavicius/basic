@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% set appName = 'basic' %}
+{% set pageClass = 'common-page' %}
+
+{% block body %}
+
+    <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
+
+    <h1>
+        List of questions
+    </h1>
+
+    <ul>
+        {% for question in questions %}
+            <li>
+                {{ question.text }}<br>
+                {% if question.answered %}
+                    {{ question.answer }}
+                {% else %}
+                    NEATSAKINĖJAI
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

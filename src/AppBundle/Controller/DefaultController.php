@@ -74,4 +74,21 @@ class DefaultController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/questions", name="questions")
+     */
+    public function questionsAction()
+    {
+        if (!$this->isGranted(['IS_AUTHENTICATED_FULLY'])) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        return $this->render(
+            'default/questions.html.twig',
+            [
+                'questions' => $this->get('basic.questions')->getMyQuestions($this->getUser()),
+            ]
+        );
+    }
 }
