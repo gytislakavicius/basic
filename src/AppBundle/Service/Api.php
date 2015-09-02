@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Answer;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserAnswer;
@@ -54,12 +55,34 @@ class Api
         foreach ($questions as $question) {
             $result[] = [
                 'id'         => $question->getId(),
-                'heading'    => $question->getText(),
-                'caption'    => $question->getDescription(),
+                'text'       => $question->getText(),
                 'type'       => $question->getType(),
                 'isActive'   => $question->isActive(),
                 'activeFrom' => $question->getActiveFrom()->getTimestamp(),
                 'activeTo'   => $question->getActiveTo()->getTimestamp(),
+                'answers'    => $this->getAnswersForQuestion($question),
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param Question $question
+     *
+     * @return array
+     */
+    protected function getAnswersForQuestion(Question $question)
+    {
+        $result = [];
+
+        $answers = $this->em->getRepository('AppBundle:Answer')->findBy(['question' => $question->getId()]);
+
+        /** @var Answer $answer */
+        foreach ($answers as $answer) {
+            $result[] = [
+                'id' => $answer->getId(),
+                'text' => $answer->getText(),
             ];
         }
 
