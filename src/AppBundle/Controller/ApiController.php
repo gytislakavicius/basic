@@ -37,29 +37,6 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/team/list", name="api.team")
-     */
-    public function teamAction()
-    {
-        throw new \Exception('Feature not implemented yet.');
-    }
-
-    /**
-     * @Route("/person/list", name="api.person")
-     */
-    public function personAction()
-    {
-        /** @var Api $apiService */
-        $apiService = $this->get('basic.api');
-
-        return new JsonResponse(
-            [
-                'persons' => $apiService->getPersons(),
-            ]
-        );
-    }
-
-    /**
      * Returns status:
      * success - if everything went fine
      * expired - if question is no longer active
