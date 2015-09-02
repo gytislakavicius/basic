@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="lt-LT" ng-app="{{ appName }}">
+<html lang="lt-LT">
     <head>
         <meta charset="UTF-8" />
         <meta name="robots" content="noindex,nofollow"/>
@@ -11,18 +11,10 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
     </head>
-    <body {% if pageClass is defined %}class="{{ pageClass }}"{% endif %}>
+    <body {% if pageClass is defined %}class="{{ pageClass }}"{% endif %} ng-app="game">
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="{{ asset('js/require.js') }}"></script>
-            <script>
-                require.config({
-                    baseUrl: '/js',
-                    urlArgs: 'v=',
-                    waitSec: 0
-                });
-                require(['{{ appName }}']);
-            </script>
+            <script src="{{ asset('scripts/app.js') }}"></script>
         {% endblock %}
     </body>
 </html>

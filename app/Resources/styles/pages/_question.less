@@ -1,0 +1,97 @@
+.question-container {
+  padding: 81px 40px 0 40px;
+
+  .question {
+    max-width: 274px;
+    color: #343534;
+    font-family: "Source Sans Pro";
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 38px;
+  }
+
+  .question-time-left {
+      font-family: "Source Sans Pro";
+      font-size: 18px;
+      line-height: 38px;
+      color: #343534;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 45px;
+
+    .time {
+      color: #fc6b0e;
+      font-weight: 700;
+    }
+  }
+
+  .questions-form {
+    .questions-list {
+      padding: 0;
+      margin: 0;
+
+      li {
+        list-style: none;
+        max-width: 334px;
+        width: 100%;
+        height: 64px;
+        line-height: 64px;
+        background-color: white;
+        color: #979797;
+        font-family: "Source Sans Pro";
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 10px;
+        cursor: pointer;
+        padding: 0 27px;
+
+        &, & > * {
+          cursor: pointer;
+        }
+
+        &:last-child {
+          margin-bottom: 30px;
+        }
+
+        &.selected {
+          border: 3px solid #6addca;
+          font-weight: 700;
+          color: #343534;
+          line-height: 60px;
+
+          label:after {
+            background: #6bddca;
+          }
+        }
+
+        // lets fake the inputs
+        input {
+          display: none;
+        }
+        
+        label {
+          position: relative;
+          padding-left: 32px;
+          
+          &:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 0;
+            display: block;
+            background: white;
+            border: 5px solid #ececec;
+            width: 21px;
+            height: 21px;
+            -webkit-border-radius: 21px;
+            -moz-border-radius: 21px;
+            border-radius: 21px;
+          }
+        }
+      }
+    }
+
+    button {
+    }
+  }
+}

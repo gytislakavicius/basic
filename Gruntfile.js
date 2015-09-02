@@ -1,8 +1,6 @@
 module.exports = function(grunt) {
     'use strict';
 
-    var path = require('path');
-
     require('jit-grunt')(grunt);
 
     grunt.initConfig({
@@ -18,63 +16,32 @@ module.exports = function(grunt) {
                 }
             }
         },
-        requirejs: {
-            basic: {
-                options: {
-                    baseUrl: 'web/build-script',
-                    out: 'web/js/basic.js',
-                    name: 'basic',
-                    optimize: '<%= grunt.config.get("requireJsOptimizer") %>',
-                    paths: {
-                        'angular': path.resolve() + '/node_modules/angular/angular.min'
-                    },
-                    shim: {
-                        'angular': {
-                            exports: 'angular'
-                        }
-                    },
-                    skipSemiColonInsertion: true,
-                    wrapShim: true,
-                    useStrict: true
-                }
+        concat: {
+            options: {
+                separator: ';'
             },
-            basicRegister: {
-                options: {
-                    baseUrl: 'web/build-script',
-                    out: 'web/js/basicRegister.js',
-                    name: 'basicRegister',
-                    optimize: '<%= grunt.config.get("requireJsOptimizer") %>',
-                    paths: {
-                        'angular': path.resolve() + '/node_modules/angular/angular.min'
-                    },
-                    shim: {
-                        'angular': {
-                            exports: 'angular'
-                        }
-                    },
-                    skipSemiColonInsertion: true,
-                    wrapShim: true,
-                    useStrict: true
-                }
+            dist: {
+                src: ['app/Resources/scripts/angular.min.js', 'app/Resources/scripts/app.js'],
+                dest: 'web/scripts/app.js'
             }
         },
-        ts: {
-            dev: {
+        watch: {
+            styles: {
+                files: ['app/Resources/styles/**/*.less'],
+                tasks: ['less'],
                 options: {
-                    fast: 'never',
-                    module: 'amd',
-                    sourceMap: false
-                },
-                outDir: 'web/build-script',
-                reference: 'typings/bundle.d.ts',
-                src: ['typings/bundle.d.ts', 'app/Resources/scripts/**/*.ts'],
-                target: 'es5'
+                    spawn: false
+                }
+            },
+            scripts: {
+                files: ['app/Resources/scripts/**/*.js'],
+                tasks: ['concat'],
+                options: {
+                    spawn: false
+                }
             }
         }
     });
 
-    grunt.config.set('requireJsOptimizer', 'none');
-
-    grunt.registerTask('default', ['less', 'ts', 'requirejs']);
-    grunt.registerTask('scripts', ['ts', 'requirejs']);
-}
+    grunt.registerTask('default', ['less', 'concat']);
+};

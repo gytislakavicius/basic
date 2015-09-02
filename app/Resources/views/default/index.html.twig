@@ -2,85 +2,87 @@
 
 {% set appName = 'basic' %}
 {% set pageClass = 'common-page' %}
+{% set gameStarted = true %}
 
 {% block body %}
-    <script>
-        var end = new Date('2015-09-04T10:15:00'),
-            _second = 1000,
-            _minute = _second * 60,
-            _hour = _minute * 60,
-            timer;
+    {% if not gameStarted %}
+        <script>
+            var end = new Date('2015-09-04T10:15:00'),
+                    _second = 1000,
+                    _minute = _second * 60,
+                    _hour = _minute * 60,
+                    timer;
 
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            if (distance < 0) {
-                clearInterval(timer);
-                return;
+            function showRemaining() {
+                var now = new Date();
+                var distance = end - now;
+                if (distance < 0) {
+                    clearInterval(timer);
+                    return;
+                }
+
+                var hours = Math.floor(distance / _hour);
+                var minutes = Math.floor((distance % _hour) / _minute);
+                var seconds = Math.floor((distance % _minute) / _second);
+
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                minutes = (minutes < 10) ? '0' + minutes : minutes;
+                hours = (hours < 10) ? '0' + hours : hours;
+
+                document.getElementById('hours').innerHTML = hours;
+                document.getElementById('minutes').innerHTML = minutes;
+                document.getElementById('seconds').innerHTML = seconds;
             }
 
-            var hours = Math.floor(distance / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
+            timer = setInterval(showRemaining, 1000);
+        </script>
 
-            seconds = (seconds < 10) ? '0' + seconds : seconds;
-            minutes = (minutes < 10) ? '0' + minutes : minutes;
-            hours = (hours < 10) ? '0' + hours : hours;
-
-            document.getElementById('hours').innerHTML = hours;
-            document.getElementById('minutes').innerHTML = minutes;
-            document.getElementById('seconds').innerHTML = seconds;
-        }
-
-        timer = setInterval(showRemaining, 1000);
-    </script>
-
-    <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
-    <section class="container content idle-screen">
-        <img class="idle-bg" src="{{ asset('images/idle_bg.svg') }}" alt="">
-        <h1 class="idle-title">
-            Iki žaidimo
-            pradžios liko
-        </h1>
-        <div class="idle-countdown clearfix">
-            <div class="hours">
-                <div class="count" id="hours"></div>
-                <span class="label">Valandos</span>
+        <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
+        <section class="container content idle-screen">
+            <img class="idle-bg" src="{{ asset('images/idle_bg.svg') }}" alt="">
+            <h1 class="idle-title">
+                Iki žaidimo
+                pradžios liko
+            </h1>
+            <div class="idle-countdown clearfix">
+                <div class="hours">
+                    <div class="count" id="hours"></div>
+                    <span class="label">Valandos</span>
+                </div>
+                <span class="separator">:</span>
+                <div class="minutes">
+                    <div class="count" id="minutes"></div>
+                    <span class="label">Minutės</span>
+                </div>
+                <span class="separator">:</span>
+                <div class="seconds">
+                    <div class="count" id="seconds"></div>
+                    <span class="label">Sekundės</span>
+                </div>
+                <span id="idle-timer"></span>
             </div>
-            <span class="separator">:</span>
-            <div class="minutes">
-                <div class="count" id="minutes"></div>
-                <span class="label">Minutės</span>
-            </div>
-            <span class="separator">:</span>
-            <div class="seconds">
-                <div class="count" id="seconds"></div>
-                <span class="label">Sekundės</span>
-            </div>
-            <span id="idle-timer"></span>
-        </div>
-    </section>
+        </section>
+    {% else %}
+        <section class="container content" ng-controller="questionController as vm">
+            {% include 'partials/menu.html.twig' %}
+            {% include 'partials/answer.prompt.html.twig' %}
 
-    {# @TODO: display when game is available? #}
-    <section style="display: none;" class="container content">
-        <article class="row">
-            <h1 class="col-12 strong uppercase">Basic</h1>
-            <section>
-                {% verbatim %}
-                <h2 class="text-center" ng-controller="TimerCtrl as timer" ng-bind="timer.x">
-                </h2>
-                {% endverbatim %}
-                <h3 class="text-center">Klausimas:</h3>
-                {#<p class="col-12 text-justify" ng-controller="QuestionCtrl" ng-bind="question"></p>#}
-            </section>
-        </article>
-    </section>
-    {# @TODO: display when game is available? #}
-    <footer style="display: none;" class="container footer">
-        <nav class="clear text-center">
-            <button class="button disabled left">◀</button>
-            <span>6/15</span>
-            <button class="button right">▶</button>
-        </nav>
-    </footer>
+            <div class="question-container">
+                <h1 class="question">{{ '{{ vm.question.title }}' }}</h1>
+                <span class="question-time-left">
+                    Iki klausimo pabaigos liko: <span class="time">30min. : 25s.</span>
+                </span>
+
+                <form ng-submit="vm.submitAnswer()" class="questions-form">
+                    <ul class="questions-list">
+                        <li ng-repeat="answer in vm.question.answers" ng-click="vm.selectAnswer(answer.id)">
+                            <input id="answer_{{ '{{ answer.id }}' }}" name="answer" type="radio">
+                            <label for="answer_{{ '{{ answer.id }}' }}">{{ '{{ answer.title }}' }}</label>
+                        </li>
+                    </ul>
+                    <button>Atsakyti</button>
+                </form>
+            </div>
+        </section>
+    {% endif %}
 {% endblock %}
