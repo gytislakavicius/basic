@@ -55,4 +55,23 @@ class DefaultController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/statistics", name="statistics")
+     */
+    public function statisticsAction()
+    {
+        if (!$this->isGranted(['IS_AUTHENTICATED_FULLY'])) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        $teams = $this->getDoctrine()->getRepository('AppBundle:Team')->findBy([], ['score' => 'DESC']);
+
+        return $this->render(
+            'default/statistics.html.twig',
+            [
+                'teams' => $teams,
+            ]
+        );
+    }
 }

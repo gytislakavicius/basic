@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% set appName = 'basic' %}
+{% set pageClass = 'common-page' %}
+
+{% block body %}
+
+    <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
+
+    <h1>
+        Top teams
+    </h1>
+
+    <ul>
+        {% for team in teams %}
+            <li>
+                {{ team.getName() }} - {{ team.getScore() }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
