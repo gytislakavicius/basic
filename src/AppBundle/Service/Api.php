@@ -53,15 +53,17 @@ class Api
         $questions = $this->em->getRepository('AppBundle:Question')->findAll();
 
         foreach ($questions as $question) {
-            $result[] = [
-                'id'         => $question->getId(),
-                'text'       => $question->getText(),
-                'type'       => $question->getType(),
-                'isActive'   => $question->isActive(),
-                'activeFrom' => $question->getActiveFrom()->getTimestamp(),
-                'activeTo'   => $question->getActiveTo()->getTimestamp(),
-                'answers'    => $this->getAnswersForQuestion($question),
-            ];
+            if ($question->isPubliclyAvailable()) {
+                $result[] = [
+                    'id'         => $question->getId(),
+                    'text'       => $question->getText(),
+                    'type'       => $question->getType(),
+                    'isActive'   => $question->isActive(),
+                    'activeFrom' => $question->getActiveFrom()->getTimestamp(),
+                    'activeTo'   => $question->getActiveTo()->getTimestamp(),
+                    'answers'    => $this->getAnswersForQuestion($question),
+                ];
+            }
         }
 
         return $result;

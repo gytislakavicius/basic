@@ -235,4 +235,11 @@ class Question
 
         return new \DateInterval('PT0S');
     }
+
+    public function isPubliclyAvailable()
+    {
+        $now = new \DateTime();
+
+        return $now >= $this->getactiveFrom();
+    }
 }
