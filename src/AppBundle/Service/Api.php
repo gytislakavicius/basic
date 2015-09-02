@@ -65,6 +65,8 @@ class Api
             if ($question->isPubliclyAvailable()) {
                 $entry['text']    = $question->getText();
                 $entry['answers'] = $this->getAnswersForQuestion($question);
+            } else {
+                $entry['text']    = 'Dar nepaskelbtas';
             }
 
             $result[] = $entry;
