@@ -105,8 +105,19 @@ class PointCalculationLogic
         return $this->em->getRepository('AppBundle:Question')->findAll();
     }
 
+    /**
+     * @param $correct
+     * @param $total
+     * @param $difficulty
+     *
+     * @return float|int
+     */
     private function calculateQuestionPoints($correct, $total, $difficulty)
     {
+        if ($total == 0) {
+            return 0;
+        }
+
         return $difficulty * $correct / $total;
     }
 }
