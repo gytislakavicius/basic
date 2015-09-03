@@ -9,6 +9,7 @@
 
         <img ng-hide="vm.dataLoaded" class="loading-spinner" src="{{ asset('images/loading-spin.svg') }}" alt="">
 
+        {#idle screen#}
         <div ng-show="vm.data.inProgress == 0 && vm.data.isGameDone == 0" class="ng-cloak">
             <script>
                 var end = new Date('2015-09-04T10:15:00+03:00'),
@@ -67,11 +68,12 @@
             </section>
         </div>
 
-        <div ng-show="vm.data.inProgress == 1 && vm.data.isGameDone == 0 && !vm.activeQuestion" class="ng-cloak">
-            wait...
+        {#question upcomming#}
+        <div ng-show="!vm.activeQuestion || vm.activeQuestion.answered" class="ng-cloak">
+            <h1 class="idle-wait-for-question">Kitas klausimas jau atvažiuoja!</h1>
         </div>
 
-        <div ng-show="vm.data.inProgress == 1 && vm.data.isGameDone == 0 && vm.activeQuestion" class="ng-cloak">
+        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion" class="ng-cloak">
             <div ng-hide="vm.activeQuestion.answered == true" class="question-container" id="question_{{ '{{ vm.activeQuestion.id }}' }}" ng-show="vm.dataLoaded">
                 {% include 'partials/answer.prompt.html.twig' %}
 
@@ -90,7 +92,7 @@
                             <label for="answer_{{ '{{ answer.id }}' }}">{{ '{{ answer.text }}' }}</label>
                         </li>
                     </ul>
-                    <button>Atsakyti</button>
+                    <button data-ng-disabled="!vm.selectedAnswer">Atsakyti</button>
                 </form>
             </div>
         </div>
