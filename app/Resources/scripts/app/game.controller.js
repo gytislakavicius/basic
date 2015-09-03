@@ -7,6 +7,8 @@ var gameController = function(gameFactory, $timeout) {
 
     vm.dataLoaded = false;
     vm.answerSubmited = false;
+    vm.timerStopped = false;
+    vm.timerStarted = false;
 
     vm.data = null;
     vm.activeQuestion = null;
@@ -31,6 +33,11 @@ var gameController = function(gameFactory, $timeout) {
         return answer === vm.selectedAnswer;
     };
 
+    /**
+     *
+     * @param question
+     * @param answer
+     */
     vm.confirmAnswer = function(question, answer) {
         gameFactory.send(question, answer).then(function(response) {
             if (response.status !== 200)
@@ -49,14 +56,39 @@ var gameController = function(gameFactory, $timeout) {
         vm.answerSubmited = false;
     };
 
+    var currentTime = null;
+    var timeLeft = null;
+
+    vm.countDownTimer = function() {
+        $timeout(function() {
+            currentTime = new Date();
+            secondsLeft = vm.activeQuestion.activeTo - Math.floor(currentTime.getTime() / 1000);
+
+            vm.hours = Math.floor(secondsLeft / (60 * 60));
+            vm.minutes = Math.floor((secondsLeft % (60 * 60)) / 60);
+            vm.seconds = Math.floor(secondsLeft % vm.minutes);
+
+            if (Math.floor(currentTime.getTime() / 1000) == vm.activeQuestion.activeTo) {
+                vm.activeQuestion = null;
+                vm.timerStopped = true;
+            }
+
+            vm.countDownTimer();
+        }, 1000);
+    };
+
+    vm.countDownTimer();
+
     /**
      *
      * @param questions
      */
     function getActiveQuestion(questions) {
         questions.map(function(question) {
-            if (question.isActive)
+            if (question.isActive) {
                 vm.activeQuestion = question;
+                vm.timerStarted = true;
+            }
         });
     }
 
