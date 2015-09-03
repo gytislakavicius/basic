@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManager;
 
 class PointCalculationLogic
 {
+    const BONUS_MULTIPLIER = 1.1;
     /** @var EntityManager  */
     protected $em;
 
@@ -118,6 +119,12 @@ class PointCalculationLogic
             return 0;
         }
 
-        return $difficulty * $correct / $total;
+        $score = $difficulty * $correct / $total;
+
+        if ($total === $correct) {
+            $score = $score * PointCalculationLogic::BONUS_MULTIPLIER;
+        }
+
+        return $score;
     }
 }

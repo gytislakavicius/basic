@@ -38,32 +38,38 @@ class PointCalculationLogicTest extends \PHPUnit_Framework_TestCase
 
         //two right, one wrong
         $out[] = [
-            'fixture' => [$teamAnswers[1], [], [], []],
+            'fixture' => [$teamAnswers[1], [], [], [], []],
             'expected' => 0.667
         ];
 
         //all wrong
         $out[] = [
-            'fixture' => [[], $teamAnswers[2], [], []],
+            'fixture' => [[], $teamAnswers[2], [], [], []],
             'expected' => 0
         ];
 
         //all unanswered
         $out[] = [
-            'fixture' => [[], [], $teamAnswers[3], []],
+            'fixture' => [[], [], $teamAnswers[3], [], []],
             'expected' => 0
         ];
 
         //one right, one wrong, one unanswered
         $out[] = [
-            'fixture' => [[], [], [], $teamAnswers[4]],
+            'fixture' => [[], [], [], $teamAnswers[4], []],
             'expected' => 0.75
         ];
 
         //all scores combined
         $out[] = [
-            'fixture' => [$teamAnswers[1], $teamAnswers[2], $teamAnswers[3], $teamAnswers[4]],
+            'fixture' => [$teamAnswers[1], $teamAnswers[2], $teamAnswers[3], $teamAnswers[4], []],
             'expected' => 1.417
+        ];
+
+        //all correct plus bonus
+        $out[] = [
+            'fixture' => [[], [], [], [], $teamAnswers[5]],
+            'expected' => 1.65
         ];
 
         return $out;
@@ -84,7 +90,7 @@ class PointCalculationLogicTest extends \PHPUnit_Framework_TestCase
 
         //one question answered
         $pcl->method('getTeamAnswers')->will(
-            $this->onConsecutiveCalls($fixture[0], $fixture[1], $fixture[2], $fixture[3])
+            $this->onConsecutiveCalls($fixture[0], $fixture[1], $fixture[2], $fixture[3], $fixture[4])
         );
         $pcl->calculateTeamPoints($team1);
         $this->assertEquals($expected, $team1->getScore());
@@ -169,11 +175,22 @@ class PointCalculationLogicTest extends \PHPUnit_Framework_TestCase
         $answer8 = clone $answer4;
         $answer8->setCorrect(true);
 
+        //all correct plus bonus
+        $answer9 = new UserAnswer();
+        $answer9->setTeam($team);
+        $answer9->setCorrect(true);
+        $answer9->setQuestion($questions[4]);
+
+        $answer10 = clone $answer9;
+
+        $answer11 = clone $answer9;
+
         return [
             1 => [$answer1, $answer2, $answer3],
             2 => [$answer4, $answer5, $answer6],
             3 => [],
-            4 => [$answer7, $answer8]
+            4 => [$answer7, $answer8],
+            5 => [$answer9, $answer10, $answer11]
         ];
     }
 
@@ -195,7 +212,11 @@ class PointCalculationLogicTest extends \PHPUnit_Framework_TestCase
         $question4->setId(4);
         $question4->setDifficulty(1.5);
 
-        $questions = [$question1, $question2, $question3, $question4];
+        $question5 = new Question();
+        $question5->setId(5);
+        $question5->setDifficulty(1.5);
+
+        $questions = [$question1, $question2, $question3, $question4, $question5];
 
         return $questions;
     }
