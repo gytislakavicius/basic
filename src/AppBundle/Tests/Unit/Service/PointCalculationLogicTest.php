@@ -20,11 +20,11 @@ class PointCalculationLogicTest extends \PHPUnit_Framework_TestCase
     {
         $user = new User();
         $userAnswers = $this->getUserAnswers();
-        /** @var PointCalculationLogic $pcl */
+        /** @var PointCalculationLogic | \PHPUnit_Framework_MockObject_MockObject $pcl */
         $pcl = $this->getMockBuilder(PointCalculationLogic::class)->disableOriginalConstructor()->setMethods(['getUserAnswers'])->getMock();
-        $pcl->method('getUserAnswers')->with($user)->willReturn($userAnswers);
+        $pcl->method('getUserAnswers')->willReturn($userAnswers);
 
-       $pcl->calculateUserPoints($user);
+        $pcl->calculateUserPoints($user);
 
         $this->assertEquals(2.5, $user->getScore());
     }

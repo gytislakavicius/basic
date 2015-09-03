@@ -57,7 +57,7 @@ class PointCalculationLogic
      * @param User $user
      * @return array
      */
-    private function getUserAnswers($user)
+    protected function getUserAnswers($user)
     {
         return $this->em->getRepository('AppBundle:UserAnswer')->findBy(['user' => $user->getId()]);
     }
