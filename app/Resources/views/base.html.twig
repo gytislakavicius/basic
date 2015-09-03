@@ -7,14 +7,14 @@
         <title>{% block title %}The Basic Game{% endblock %}</title>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900' rel='stylesheet' type='text/css'>
         {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}?v=2">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
     </head>
     <body {% if pageClass is defined %}class="{{ pageClass }}"{% endif %} ng-app="game">
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="{{ asset('scripts/app.js') }}"></script>
+            <script src="{{ asset('scripts/app.js') }}?v=2"></script>
         {% endblock %}
     </body>
 </html>
