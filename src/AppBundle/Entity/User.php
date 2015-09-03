@@ -56,6 +56,13 @@ class User extends BaseUser
     private $score;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $winner;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -173,6 +180,22 @@ class User extends BaseUser
         }
 
         return $this->score;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isWinner()
+    {
+        return $this->winner;
+    }
+
+    /**
+     * @param boolean $winner
+     */
+    public function setWinner($winner)
+    {
+        $this->winner = $winner;
     }
 
     /**

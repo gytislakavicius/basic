@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Service\Api;
 use AppBundle\Service\PointCalculationLogic;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -33,8 +34,13 @@ class CalculateScoresCommand extends ContainerAwareCommand
     {
         /** @var PointCalculationLogic $pcl */
         $pcl = $this->getContainer()->get('basic.pcl');
-
         $pcl->calculateAllPoints();
+
+        /** @var Api $api */
+        $api = $this->getContainer()->get('basic.api');
+        if ($api->isGameDone()) {
+            $pcl->setWinners();
+        }
 
         $output->writeln('DONE.');
 
