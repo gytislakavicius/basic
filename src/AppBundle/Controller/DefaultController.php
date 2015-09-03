@@ -51,7 +51,9 @@ class DefaultController extends Controller
             'default/myTeam.html.twig',
             [
                 'teamName'    => $team ? $team->getName() : "You have no team.",
-                'teamMembers' => $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['team' => $user->getTeam()]),
+                'teamMembers' => $team
+                    ? $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['team' => $user->getTeam()])
+                    : [],
             ]
         );
     }
