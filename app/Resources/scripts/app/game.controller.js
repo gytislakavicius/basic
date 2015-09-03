@@ -58,10 +58,10 @@ var gameController = function(gameFactory, $timeout) {
 
     var currentTime = null;
     var timeLeft = null;
-
     var _second = 1;
     var _minute = _second * 60;
     var _hour = _minute * 60;
+    var secondsLeft = null;
 
     vm.countDownTimer = function() {
         $timeout(function() {
@@ -73,7 +73,7 @@ var gameController = function(gameFactory, $timeout) {
                 vm.minutes = Math.floor((secondsLeft % _hour) / _minute);
                 vm.seconds = Math.floor((secondsLeft % _minute) / _second);
 
-                if (Math.floor(currentTime.getTime() / 1000) == vm.activeQuestion.activeTo) {
+                if (Math.floor(currentTime.getTime() / 1000) >= vm.activeQuestion.activeTo) {
                     vm.activeQuestion = null;
                     vm.timerStopped = true;
                 }
