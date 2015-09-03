@@ -242,4 +242,12 @@ class Question
 
         return $now >= $this->getactiveFrom();
     }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 }

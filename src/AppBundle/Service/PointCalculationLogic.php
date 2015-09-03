@@ -87,7 +87,7 @@ class PointCalculationLogic
             $points += $this->calculateQuestionPoints($correct, $total, $question->getDifficulty());
         }
 
-        $team->setScore($points);
+        $team->setScore(round($points, 3));
     }
 
     /**
@@ -95,12 +95,12 @@ class PointCalculationLogic
      * @param $questionId
      * @return array
      */
-    private function getTeamAnswers($team, $questionId)
+    protected function getTeamAnswers($team, $questionId)
     {
         return $this->em->getRepository('AppBundle:UserAnswer')->findBy(['team' => $team->getId(), 'question' => $questionId]);
     }
 
-    private function getQuestions()
+    protected function getQuestions()
     {
         return $this->em->getRepository('AppBundle:Question')->findAll();
     }
