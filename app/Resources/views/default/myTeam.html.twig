@@ -9,11 +9,11 @@
     <section class="container content">
         {% include 'partials/menu.html.twig' %}
 
-        <h1>
+        <h1 class="inner-page-header">
             {{ teamName }}
         </h1>
 
-        <ul>
+        <ul class="my-team-list">
             {% for member in teamMembers %}
                 <li>
                     <img src="{{ member.getPhotoUrl() }}">

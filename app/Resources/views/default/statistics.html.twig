@@ -10,11 +10,11 @@
     <section class="container content">
         {% include 'partials/menu.html.twig' %}
 
-        <h1>
+        <h1 class="inner-page-header">
             Top teams
         </h1>
 
-        <ul>
+        <ul class="my-team-list stats-list">
             {% for team in teams %}
                 <li>
                     {{ team.getName() }} - {{ team.getScore() }}
