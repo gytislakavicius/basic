@@ -24,3 +24,7 @@
         </a>
     </li>
 </ul>
+
+{% if app.request.attributes.get('_route') != 'homepage' %}
+    <a href="{{ path('homepage') }}">Žaidimas</a>
+{% endif %}
