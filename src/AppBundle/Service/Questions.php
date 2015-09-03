@@ -36,7 +36,7 @@ class Questions
         $result = [];
 
         /** @var Question[] $questions */
-        $questions = $this->api->getQuestions();
+        $questions = $this->api->getQuestions($user, false);
 
         foreach ($questions as $question) {
             $entry = [
