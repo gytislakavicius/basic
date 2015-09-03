@@ -127,4 +127,43 @@ class PointCalculationLogic
 
         return $score;
     }
+
+    public function setWinners()
+    {
+        $this->setWinner('AppBundle:Team');
+        $this->setWinner('AppBundle:User');
+    }
+
+    private function setWinner($entityName)
+    {
+        $highestScore = $this->em->createQueryBuilder()
+            ->select('MAX(e.score)')
+            ->from($entityName, 'e')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $winning = $this->em->getRepository($entityName)->findBy(['score' => $highestScore]);
+
+        if (empty($winning)) {
+            return;
+        }
+
+        /** @var User|Team $winner */
+        if (count($winning) === 1) {
+            $winner = reset($winning);
+        } else {
+            foreach ($winning as $winner) {
+                if ($winner->isWinner()) {
+                    // Winner is already set, lets not f**k this up for someone.
+                    return;
+                }
+            }
+            $winner = $winning[array_rand($winning)];
+        }
+
+        $winner->setWinner(true);
+
+        $this->em->persist($winner);
+        $this->em->flush();
+    }
 }

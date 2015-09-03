@@ -35,6 +35,12 @@ class Team
      */
     private $score;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $winner;
 
     /**
      * Get id
@@ -98,5 +104,21 @@ class Team
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isWinner()
+    {
+        return $this->winner;
+    }
+
+    /**
+     * @param boolean $winner
+     */
+    public function setWinner($winner)
+    {
+        $this->winner = $winner;
     }
 }
