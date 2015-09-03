@@ -2,6 +2,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Answer;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserAnswer;
@@ -51,7 +52,17 @@ class Questions
 
             if ($userAnswer) {
                 $entry['answered'] = true;
-                $entry['answer']   = $userAnswer->getAnswer();
+
+                /** @var Answer $answerEntity */
+                $answerEntity = $this->em->getRepository('AppBundle:Answer')->findOneBy(
+                    ['question' => $question['id'], 'id' => $userAnswer->getAnswer()]
+                );
+
+                if ($answerEntity) {
+                    $entry['answer'] = $answerEntity->getText();
+                } else {
+                    $entry['answer'] = $userAnswer->getAnswer();
+                }
             }
 
             $result[] = $entry;

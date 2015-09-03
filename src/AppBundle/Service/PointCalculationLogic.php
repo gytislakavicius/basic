@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManager;
 
 class PointCalculationLogic
 {
+    const BONUS_MULTIPLIER = 1.1;
     /** @var EntityManager  */
     protected $em;
 
@@ -57,7 +58,7 @@ class PointCalculationLogic
      * @param User $user
      * @return array
      */
-    private function getUserAnswers($user)
+    protected function getUserAnswers($user)
     {
         return $this->em->getRepository('AppBundle:UserAnswer')->findBy(['user' => $user->getId()]);
     }
@@ -87,7 +88,7 @@ class PointCalculationLogic
             $points += $this->calculateQuestionPoints($correct, $total, $question->getDifficulty());
         }
 
-        $team->setScore($points);
+        $team->setScore(round($points, 3));
     }
 
     /**
@@ -95,18 +96,35 @@ class PointCalculationLogic
      * @param $questionId
      * @return array
      */
-    private function getTeamAnswers($team, $questionId)
+    protected function getTeamAnswers($team, $questionId)
     {
         return $this->em->getRepository('AppBundle:UserAnswer')->findBy(['team' => $team->getId(), 'question' => $questionId]);
     }
 
-    private function getQuestions()
+    protected function getQuestions()
     {
         return $this->em->getRepository('AppBundle:Question')->findAll();
     }
 
+    /**
+     * @param $correct
+     * @param $total
+     * @param $difficulty
+     *
+     * @return float|int
+     */
     private function calculateQuestionPoints($correct, $total, $difficulty)
     {
-        return $difficulty * $correct / $total;
+        if ($total == 0) {
+            return 0;
+        }
+
+        $score = $difficulty * $correct / $total;
+
+        if ($total === $correct) {
+            $score = $score * PointCalculationLogic::BONUS_MULTIPLIER;
+        }
+
+        return $score;
     }
 }

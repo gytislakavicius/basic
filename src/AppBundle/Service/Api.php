@@ -44,27 +44,47 @@ class Api
     }
 
     /**
+     * @param User $currentUser
+     *
      * @return array
      */
-    public function getQuestions()
+    public function getQuestions(User $currentUser = null)
     {
         $result = [];
 
         /** @var Question[] $questions */
-        $questions = $this->em->getRepository('AppBundle:Question')->findAll();
+        $questions = $this->em->getRepository('AppBundle:Question')->findBy([], ['activeFrom' => 'ASC']);
 
         foreach ($questions as $question) {
+            $entry = [
+                'id'         => $question->getId(),
+                'type'       => $question->getType(),
+                'isActive'   => $question->isActive(),
+                'activeFrom' => $question->getActiveFrom()->getTimestamp(),
+                'activeTo'   => $question->getActiveTo()->getTimestamp(),
+            ];
+
             if ($question->isPubliclyAvailable()) {
-                $result[] = [
-                    'id'         => $question->getId(),
-                    'text'       => $question->getText(),
-                    'type'       => $question->getType(),
-                    'isActive'   => $question->isActive(),
-                    'activeFrom' => $question->getActiveFrom()->getTimestamp(),
-                    'activeTo'   => $question->getActiveTo()->getTimestamp(),
-                    'answers'    => $this->getAnswersForQuestion($question),
-                ];
+                $entry['text']    = $question->getText();
+                $entry['answers'] = $this->getAnswersForQuestion($question);
+            } else {
+                $entry['text']    = 'Dar nepaskelbtas';
             }
+
+            if ($currentUser !== null) {
+                $answer = $this->em->getRepository('AppBundle:UserAnswer')->findOneBy([
+                    'question' => $question->getId(),
+                    'user'     => $currentUser->getId(),
+                ]);
+
+                if ($answer) {
+                    $entry['answered'] = true;
+                } else {
+                    $entry['answered'] = false;
+                }
+            }
+
+            $result[] = $entry;
         }
 
         return $result;

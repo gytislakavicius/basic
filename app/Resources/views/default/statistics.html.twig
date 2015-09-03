@@ -7,15 +7,19 @@
 
     <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
 
-    <h1>
-        Top teams
-    </h1>
+    <section class="container content">
+        {% include 'partials/menu.html.twig' %}
 
-    <ul>
-        {% for team in teams %}
-            <li>
-                {{ team.getName() }} - {{ team.getScore() }}
-            </li>
-        {% endfor %}
-    </ul>
+        <h1>
+            Top teams
+        </h1>
+
+        <ul>
+            {% for team in teams %}
+                <li>
+                    {{ team.getName() }} - {{ team.getScore() }}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}

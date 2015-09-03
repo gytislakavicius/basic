@@ -168,6 +168,10 @@ class User extends BaseUser
      */
     public function getScore()
     {
+        if ($this->score === null) {
+            return 0;
+        }
+
         return $this->score;
     }
 
