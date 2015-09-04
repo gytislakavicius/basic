@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\RegisterType;
+use AppBundle\Service\Api;
 use FOS\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,6 +23,12 @@ class ActivationController extends Controller
         $registerForm = $this->createForm(new RegisterType());
 
         $registerForm->handleRequest($request);
+
+        /** @var Api $apiService */
+        $apiService = $this->get('basic.api');
+        if ($apiService->isGameInProgress()) {
+            throw new \Exception('Žaidimas jau prasidėjo :(');
+        }
 
         if ($registerForm->isValid()) {
             $formData = $registerForm->getData();
