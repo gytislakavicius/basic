@@ -72,11 +72,11 @@
 
         {#question upcomming#}
         <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion == null || vm.activeQuestion.answered" class="ng-cloak notification-screen">
-            <h1 class="idle-wait-for-question">Kitas klausimas jau atvažiuoja!</h1>
+            <h1 class="idle-wait-for-question">Klausimas jau atvažiuoja!</h1>
             <img src="images/success.svg" alt="">
         </div>
 
-        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion" class="ng-cloak">
+        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion && !vm.activeQuestion.answered" class="ng-cloak">
             <div ng-hide="vm.activeQuestion.answered == true" class="question-container" id="question_{{ '{{ vm.activeQuestion.id }}' }}" ng-show="vm.dataLoaded">
                 {% include 'partials/answer.prompt.html.twig' %}
 
