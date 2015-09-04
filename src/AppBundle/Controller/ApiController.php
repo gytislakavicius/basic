@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Team;
 use AppBundle\Service\Api;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,11 +27,15 @@ class ApiController extends Controller
 
         /** @var Api $apiService */
         $apiService = $this->get('basic.api');
+        /** @var Team $team */
+        $team = $this->getUser()->getTeam();
 
         return new JsonResponse(
             [
                 'inProgress' => $apiService->isGameInProgress(),
                 'isGameDone' => $apiService->isGameDone(),
+                'userWon'    => (bool) $this->getUser()->isWinner(),
+                'teamWon'    => !is_null($team) ? (bool) $team->isWinner(): false,
                 'questions'  => $apiService->getQuestions($this->getUser()),
             ]
         );
