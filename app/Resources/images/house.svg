@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="75px" height="73px" viewBox="0 0 75 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>house copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="house" sketch:type="MSLayerGroup">
+            <g id="Layer_2"></g>
+            <g id="Layer_1" transform="translate(9.632812, 10.671875)" stroke-width="5" stroke="#FC6B0E" sketch:type="MSShapeGroup">
+                <g id="Group">
+                    <path d="M0.507726562,20.2009922 L28.0738125,0.390820312 L55.2266484,20.2009922" id="Shape"></path>
+                    <path d="M20.2050703,49.5465 L20.2050703,32.2912734 C20.2050703,32.2912734 22.4765859,28.3198594 27.2928516,28.3198594 C32.1077578,28.3198594 34.3785937,32.2912734 34.3785937,32.2912734 L34.3785937,49.5465" id="Shape"></path>
+                    <path d="M10.5949687,11.5071094 L10.5949687,0.390820312 L16.7774062,0.390820312 L16.7774062,7.6070625" id="Shape"></path>
+                    <path d="M51.5135156,17.4917578 L51.5135156,46.6279219 C51.5135156,49.1896641 49.43775,51.26475 46.8766875,51.26475 L8.8576875,51.26475 C6.29594531,51.26475 4.22085937,49.1889844 4.22085937,46.6279219 L4.22085937,17.5325391" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

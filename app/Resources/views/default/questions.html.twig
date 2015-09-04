@@ -10,14 +10,14 @@
     <section class="container content">
         {% include 'partials/menu.html.twig' %}
 
-        <h1>
+        <h1 class="inner-page-header">
             List of questions
         </h1>
 
-        <ul>
+        <ul class="my-team-list list-questions">
             {% for question in questions %}
                 <li>
-                    {{ question.text }}<br>
+                    <strong>{{ question.text }}</strong>
                     {% if question.answered %}
                         {{ question.answer }}
                     {% else %}

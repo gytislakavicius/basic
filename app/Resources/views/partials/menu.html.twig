@@ -24,3 +24,8 @@
         </a>
     </li>
 </ul>
+
+{% if app.request.attributes.get('_route') != 'homepage' %}
+    <a class="game-home-link" href="{{ path('homepage') }}">
+        <img src="images/house.svg" alt="">Žaidimas</a>
+{% endif %}

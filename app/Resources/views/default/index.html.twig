@@ -4,27 +4,107 @@
 {% set pageClass = 'common-page' %}
 
 {% block body %}
-    <section class="container content" ng-controller="gameController as vm" ng-cloak>
-        {% include 'partials/menu.html.twig' %}
-        {% include 'partials/answer.prompt.html.twig' %}
+    <section class="container content" ng-controller="gameController as vm">
+        {% if isGameStarted %}
+            {% include 'partials/menu.html.twig' %}
+        {% endif %}
+
+        <div ng-show="vm.isGameDone == 1" class="ng-cloak">
+            <img src="images/pacman.svg" alt="" width="100px" style="padding-top: 50px; display:block;margin:0 auto;">
+            <h1 class="idle-wait-for-question" style="margin-top: 0;">Žaidimas baigėsi!</h1>
+        </div>
 
         <img ng-hide="vm.dataLoaded" class="loading-spinner" src="{{ asset('images/loading-spin.svg') }}" alt="">
 
-        <div class="question-container" id="question_{{ '{{ vm.activeQuestion.id }}' }}" ng-show="vm.dataLoaded">
-            <h1 class="question">{{ '{{ vm.activeQuestion.text }}' }}</h1>
-            <span class="question-time-left">
-                Iki klausimo pabaigos liko: <span class="time">30min. : 25s.</span>
-            </span>
+        {#idle screen#}
+        <div ng-show="vm.data.inProgress == 0 && vm.data.isGameDone == 0" class="ng-cloak">
+            <script>
+                var end = new Date('2015-09-04T10:15:00+03:00'),
+                        _second = 1000,
+                        _minute = _second * 60,
+                        _hour = _minute * 60,
+                        timer;
 
-            <form ng-submit="vm.submitAnswer()" class="questions-form">
-                <ul class="questions-list">
-                    <li ng-repeat="answer in vm.activeQuestion.answers" ng-class="{ selected: vm.isSelected(answer.id) }" ng-click="vm.selectAnswer(answer.id)">
-                        <input id="answer_{{ '{{ answer.id }}' }}" name="answer" type="radio">
-                        <label for="answer_{{ '{{ answer.id }}' }}">{{ '{{ answer.text }}' }}</label>
-                    </li>
-                </ul>
-                <button>Atsakyti</button>
-            </form>
+                function showRemaining() {
+                    var now = new Date();
+                    var distance = end - now;
+                    if (distance < 0) {
+                        clearInterval(timer);
+                        return;
+                    }
+
+                    var hours = Math.floor(distance / _hour);
+                    var minutes = Math.floor((distance % _hour) / _minute);
+                    var seconds = Math.floor((distance % _minute) / _second);
+
+                    seconds = (seconds < 10) ? '0' + seconds : seconds;
+                    minutes = (minutes < 10) ? '0' + minutes : minutes;
+                    hours = (hours < 10) ? '0' + hours : hours;
+
+                    document.getElementById('hours').innerHTML = hours;
+                    document.getElementById('minutes').innerHTML = minutes;
+                    document.getElementById('seconds').innerHTML = seconds;
+                }
+
+                timer = setInterval(showRemaining, 1000);
+            </script>
+            <img class="idle-robot" src="{{ asset('images/idle_robot.svg') }}" alt="">
+            <section class="idle-screen">
+                <img class="idle-bg" src="{{ asset('images/idle_bg.svg') }}" alt="">
+                <h1 class="idle-title">
+                    Iki žaidimo
+                    pradžios liko
+                </h1>
+                <div class="idle-countdown clearfix">
+                    <div class="hours">
+                        <div class="count" id="hours"></div>
+                        <span class="label">Valandos</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="minutes">
+                        <div class="count" id="minutes"></div>
+                        <span class="label">Minutės</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="seconds">
+                        <div class="count" id="seconds"></div>
+                        <span class="label">Sekundės</span>
+                    </div>
+                    <span id="idle-timer"></span>
+                </div>
+            </section>
         </div>
+
+        {#question upcomming#}
+        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion == null || vm.activeQuestion.answered" class="ng-cloak notification-screen">
+            <h1 class="idle-wait-for-question">Klausimas jau atvažiuoja!</h1>
+            <img src="images/success.svg" alt="">
+        </div>
+
+        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion && !vm.activeQuestion.answered" class="ng-cloak">
+            <div ng-hide="vm.activeQuestion.answered == true" class="question-container" id="question_{{ '{{ vm.activeQuestion.id }}' }}" ng-show="vm.dataLoaded">
+                {% include 'partials/answer.prompt.html.twig' %}
+
+                <h1 class="question">{{ '{{ vm.activeQuestion.text }}' }}</h1>
+                <span class="question-time-left">
+                    Iki klausimo pabaigos liko:
+                    <span class="time">
+                        {{ '{{ vm.hours }}' }}val. {{ '{{ vm.minutes }}' }}min. : {{ '{{ vm.seconds }}' }}s.
+                    </span>
+                </span>
+
+                <form ng-submit="vm.submitAnswer()" class="questions-form">
+                    <ul ng-show="vm.activeQuestion.type == 'closed'" class="questions-list">
+                        <li ng-repeat="answer in vm.activeQuestion.answers" ng-class="{ selected: vm.isSelected(answer.id) }" ng-click="vm.selectAnswer(answer.id)">
+                            <input id="answer_{{ '{{ answer.id }}' }}" name="answer" type="radio">
+                            <label for="answer_{{ '{{ answer.id }}' }}">{{ '{{ answer.text }}' }}</label>
+                        </li>
+                    </ul>
+                    <input ng-show="vm.activeQuestion.type == 'open'" ng-model="vm.selectedAnswer" placeholder="Tavo atsakymas" type="text">
+                    <button data-ng-disabled="!vm.selectedAnswer">Atsakyti</button>
+                </form>
+            </div>
+        </div>
+
     </section>
 {% endblock %}
