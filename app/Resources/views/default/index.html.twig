@@ -9,6 +9,11 @@
             {% include 'partials/menu.html.twig' %}
         {% endif %}
 
+        <div ng-show="vm.isGameDone == 1" class="ng-cloak">
+            <img src="images/pacman.svg" alt="" width="100px" style="padding-top: 50px; display:block;margin:0 auto;">
+            <h1 class="idle-wait-for-question" style="margin-top: 0;">Žaidimas baigėsi!</h1>
+        </div>
+
         <img ng-hide="vm.dataLoaded" class="loading-spinner" src="{{ asset('images/loading-spin.svg') }}" alt="">
 
         {#idle screen#}
