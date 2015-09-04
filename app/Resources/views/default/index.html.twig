@@ -5,7 +5,7 @@
 
 {% block body %}
     <section class="container content" ng-controller="gameController as vm">
-        {% if isGameStarted %}
+        {% if isGameInProgress %}
             {% include 'partials/menu.html.twig' %}
         {% endif %}
 
@@ -76,7 +76,7 @@
         </div>
 
         {#question upcomming#}
-        <div ng-show="vm.data.inProgress == 1 && vm.data.isGameDone == 0 && vm.activeQuestion == null || vm.activeQuestion.answered" class="ng-cloak notification-screen">
+        <div ng-show="vm.data.inProgress == 1 && vm.data.isGameDone == 0 && vm.activeQuestion == null || vm.data.isGameDone == 0 && vm.activeQuestion.answered" class="ng-cloak notification-screen">
             <h1 class="idle-wait-for-question">Klausimas jau atvažiuoja!</h1>
             <img src="images/success.svg" alt="">
         </div>
