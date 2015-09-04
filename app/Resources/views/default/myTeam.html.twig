@@ -16,7 +16,7 @@
         <ul class="my-team-list">
             {% for member in teamMembers %}
                 <li>
-                    <img src="{{ member.getPhotoUrl() }}">
+                    <img width="90px" src="{{ member.getPhotoUrl() }}">
                     {{ member.getFullName() }}
                 </li>
             {% endfor %}
