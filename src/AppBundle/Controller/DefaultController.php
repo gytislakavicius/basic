@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Service\Api;
 
 class DefaultController extends Controller
 {
@@ -18,7 +19,14 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
 
-        return $this->render('default/index.html.twig');
+        $apiService = $this->get('basic.api');
+
+        return $this->render(
+            'default/index.html.twig',
+            [
+                'isGameStarted' => $apiService->isGameInProgress()
+            ]
+        );
     }
 
     /**

@@ -5,7 +5,9 @@
 
 {% block body %}
     <section class="container content" ng-controller="gameController as vm">
-        {% include 'partials/menu.html.twig' %}
+        {% if isGameStarted %}
+            {% include 'partials/menu.html.twig' %}
+        {% endif %}
 
         <img ng-hide="vm.dataLoaded" class="loading-spinner" src="{{ asset('images/loading-spin.svg') }}" alt="">
 
