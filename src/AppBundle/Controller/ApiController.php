@@ -34,8 +34,8 @@ class ApiController extends Controller
             [
                 'inProgress' => $apiService->isGameInProgress(),
                 'isGameDone' => $apiService->isGameDone(),
-                'userWon'    => (bool) $this->getUser()->isWinner(),
-                'teamWon'    => !is_null($team) ? (bool) $team->isWinner(): false,
+//                'userWon'    => (bool) $this->getUser()->isWinner(),
+//                'teamWon'    => !is_null($team) ? (bool) $team->isWinner(): false,
                 'questions'  => $apiService->getQuestions($this->getUser()),
             ]
         );
