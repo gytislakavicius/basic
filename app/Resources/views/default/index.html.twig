@@ -69,8 +69,9 @@
         </div>
 
         {#question upcomming#}
-        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion == null || vm.activeQuestion.answered" class="ng-cloak">
+        <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion == null || vm.activeQuestion.answered" class="ng-cloak notification-screen">
             <h1 class="idle-wait-for-question">Kitas klausimas jau atvažiuoja!</h1>
+            <img src="images/success.svg" alt="">
         </div>
 
         <div ng-show="vm.data.inProgress == 1 && vm.activeQuestion" class="ng-cloak">
